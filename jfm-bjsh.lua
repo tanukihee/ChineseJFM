@@ -11,8 +11,8 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [1] = {0, 0.5, 0, priority = 1},
-            [3] = {0, 0.25, 0, priority = 1}
+            [1] = {0, 0.5, 0, priority = -1},
+            [3] = {0, 0.25, 0, priority = -1}
         }
     },
     [1] = {
@@ -42,7 +42,7 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [3] = {0, 0.25, 0, priority = 1}
+            [3] = {0, 0.25, 0, priority = -1}
         }
     },
     [2] = {
@@ -73,12 +73,12 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [0] = {0, 0.5, 0, priority = 1},
-            [1] = {0, 0.5, 0, priority = 1},
-            [3] = {0, 0.5, 0, priority = 1},
-            [5] = {0, 0.5, 0, priority = 1},
-            [501] = {0, 0.5, 0, priority = 1},
-            [502] = {0, 0.5, 0, priority = 1}
+            [0] = {0, 0.5, 0, priority = -1},
+            [1] = {0, 0.5, 0, priority = -1},
+            [3] = {0, 0.5, 0, priority = -1},
+            [5] = {0, 0.5, 0, priority = -1},
+            [501] = {0, 0.5, 0, priority = -1},
+            [502] = {0, 0.5, 0, priority = -1}
         }
     },
     [201] = {
@@ -130,16 +130,16 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [0] = {0, 0.25, 0, priority = 1},
-            [1] = {0, 0.5, 0, priority = 1},
-            [2] = {0, 0.25, 0, priority = 1},
-            [201] = {0, 0.25, 0, priority = 1},
-            [202] = {0, 0.25, 0, priority = 1},
-            [3] = {0, 0.5, 0, priority = 1},
-            [4] = {0, 0.25, 0, priority = 1},
-            [401] = {0, 0.25, 0, priority = 1},
-            [402] = {0, 0.25, 0, priority = 1},
-            [5] = {0, 0.25, 0, priority = 1}
+            [0] = {0, 0.25, 0, priority = -1},
+            [1] = {0, 0.5, 0, priority = -1},
+            [2] = {0, 0.25, 0, priority = -1},
+            [201] = {0, 0.25, 0, priority = -1},
+            [202] = {0, 0.25, 0, priority = -1},
+            [3] = {0, 0.5, 0, priority = -1},
+            [4] = {0, 0.25, 0, priority = -1},
+            [401] = {0, 0.25, 0, priority = -1},
+            [402] = {0, 0.25, 0, priority = -1},
+            [5] = {0, 0.25, 0, priority = -1}
         }
     },
     [4] = {
@@ -153,12 +153,12 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [0] = {0, 0.5, 0, priority = -1},
-            [1] = {0, 0.5, 0, priority = -1},
-            [3] = {0, 0.5, 0, priority = -1},
-            [5] = {0, 0.5, 0, priority = -1},
-            [501] = {0, 0.5, 0, priority = -1},
-            [502] = {0, 0.5, 0, priority = -1}
+            [0] = {0, 0.5, 0, priority = 1},
+            [1] = {0, 0.5, 0, priority = 1},
+            [3] = {0, 0.5, 0, priority = 1},
+            [5] = {0, 0.5, 0, priority = 1},
+            [501] = {0, 0.5, 0, priority = 1},
+            [502] = {0, 0.5, 0, priority = 1}
         }
     },
     [401] = {
@@ -172,12 +172,12 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [0] = {0, 0.5, 0, priority = -1},
-            [1] = {0, 0.5, 0, priority = -1},
-            [3] = {0, 0.5, 0, priority = -1},
-            [5] = {0, 0.5, 0, priority = -1},
-            [501] = {0, 0.5, 0, priority = -1},
-            [502] = {0, 0.5, 0, priority = -1}
+            [0] = {0, 0.5, 0, priority = 1},
+            [1] = {0, 0.5, 0, priority = 1},
+            [3] = {0, 0.5, 0, priority = 1},
+            [5] = {0, 0.5, 0, priority = 1},
+            [501] = {0, 0.5, 0, priority = 1},
+            [502] = {0, 0.5, 0, priority = 1}
         }
     },
     [402] = {
@@ -191,7 +191,7 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [3] = {0.25, 0, 0.25, priority = 1}
+            [3] = {0.25, 0, 0.25, priority = -1}
         }
     },
     [5] = {
@@ -212,8 +212,8 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [1] = {0, 0.5, 0, priority = 1},
-            [3] = {0, 0.25, 0, priority = 1}
+            [1] = {0, 0.5, 0, priority = -1},
+            [3] = {0, 0.25, 0, priority = -1}
         },
         kern = {
             [5] = 0,
@@ -232,8 +232,8 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [1] = {0, 0.5, 0, priority = 1},
-            [3] = {0, 0.25, 0, priority = 1}
+            [1] = {0, 0.5, 0, priority = -1},
+            [3] = {0, 0.25, 0, priority = -1}
         },
         kern = {
             [5] = 0,
@@ -252,8 +252,8 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [1] = {0, 0.5, 0, priority = 1},
-            [3] = {0, 0.25, 0, priority = 1}
+            [1] = {0, 0.5, 0, priority = -1},
+            [3] = {0, 0.25, 0, priority = -1}
         },
         kern = {
             [5] = 0,
