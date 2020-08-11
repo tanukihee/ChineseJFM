@@ -1,4 +1,5 @@
 luatexja.jfont.define_jfm {
+    version = 3,
     dir = 'tate',
     zw = 1,
     zh = 1,
