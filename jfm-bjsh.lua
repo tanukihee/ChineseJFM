@@ -192,7 +192,7 @@ luatexja.jfont.define_jfm {
         depth = 0.12,
         italic = 0,
         glue = {
-            [3] = {0.25, 0, 0.25, priority = -1}
+            [3] = {0, 0.25, 0, priority = -1}
         }
     },
     [5] = {
