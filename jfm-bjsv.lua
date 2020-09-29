@@ -1,3 +1,9 @@
+local is_hwcl
+
+if luatexja.jfont.jfm_feature then
+    is_hwcl = luatexja.jfont.jfm_feature.hwColon
+end
+
 luatexja.jfont.define_jfm {
     version = 3,
     dir = 'tate',
@@ -107,12 +113,17 @@ luatexja.jfont.define_jfm {
         align = 'left',
         left = 0,
         down = 0,
-        width = 1,
+        width = is_hwcl and 0.5 or 1,
         height = 0.5,
         depth = 0.5,
         italic = 0,
         glue = {
-            [3] = {0, 0.25, 0, priority = -1}
+            [0] = is_hwcl and {0, 0.5, 0} or {},
+            [1] = is_hwcl and {0, 0.5, 0} or {},
+            [3] = is_hwcl and {0, 0.5, 0} or {0, 0.25, 0, priority = -1},
+            [5] = is_hwcl and {0, 0.5, 0} or {},
+            [501] = is_hwcl and {0, 0.5, 0} or {},
+            [502] = is_hwcl and {0, 0.5, 0} or {}
         }
     },
     [3] = {
