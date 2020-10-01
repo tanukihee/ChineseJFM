@@ -113,7 +113,7 @@ luatexja.jfont.define_jfm {
         align = 'left',
         left = 0,
         down = 0,
-        width = 1,
+        width = is_hwcl and 0.5 or 1,
         height = 0.5,
         depth = 0.5,
         italic = 0,
