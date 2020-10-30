@@ -1,10 +1,32 @@
 # luatexja 使用的中文 JFM 文件
 
-为 luatexja 编写的中文 JFM 文件，提供全角（qj）、半角（bj）、开明（km）三种风格，适用于简（s）繁（t）中文及日文字体（j）标点的横（h）直（v）排。
+为 luatexja 编写的中文 JFM 文件，提供全角、半角、开明三种风格，适用于简繁中文及日文字体的横直排。
+
+## 使用方法
+
+luatexja 可以使用 `/` 来调用 JFM 特性，语法为 `JFM=<JFM name>/{<JFM features>}` 。受北川宏典先生的 [fork 版本](https://github.com/h-kitagawa/ChineseJFM/tree/combine)的影响，所有风格的被整合进一个文件内，使用 JFM 特性调用。
+
+### 特性一览
+
+* `quanjiao`、`banjiao`、`kaiming`
+
+    最基础的三种特性，即「全角」「半角」与「开明」。此三特性**必须**选择其中一种。
+
+* `vert`
+
+    直排特性，在直排时必须使用。
+
+    - `hwcl`
+
+        半宽冒号特性，仅 zh_CN 拥有，必须在直排下使用。适用于部分竖排时冒号只占半宽的字体。
+
+* `prop`
+
+    比例宽度特性，仅 ja_JP 拥有。适用于日文的比例假名字体。
 
 ## 挤压顺序
 
-该 JFM 文件中同时增加了 `priority` 的设置，配合 luatexja-adjust 包，可以进行有优先顺序的标点挤压。挤压顺序如下：
+JFM 文件中同时增加了 `priority` 的设置，配合 luatexja-adjust 包，可以进行有优先顺序的标点挤压。挤压顺序如下：
 
 * 最优先挤压引号、括号前后与间隔号两边的空格；
 
@@ -27,9 +49,3 @@
 * 如果进行上述调整后，仍无法达到行长要求，最后才会进行字间字距调整。
 
 「加法式」的标点调整，更加直观，也更容易理解。
-
-## JFM 特性
-
-luatexja 可以使用 `/` 来调用 JFM 特性。在北川宏典先生的 [fork 版本](https://github.com/h-kitagawa/ChineseJFM/tree/combine)中，他将全角、半角、开明三种风格以特性方式封装在了一个 JFM 文件之中，从而精简 JFM 文件数量，并方便调用。
-
-本仓库中的简中直排 JFM 中封装了 `hwColon` 特性，可以适用于部分直排中冒号、分号只占半宽的字体。
