@@ -151,7 +151,7 @@ luatexja.jfont.define_jfm {
     [22] = {
         -- 冒号、分号
         chars = {'：', '；'},
-        align = is_vt and 'left' or 'middle',
+        align = 'middle',
         left = 0,
         down = 0,
         width = is_vt and 1 or 0.5,
