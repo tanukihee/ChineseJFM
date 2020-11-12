@@ -4,7 +4,7 @@
 
 ## 使用方法
 
-luatexja 可以使用 `/` 来调用 JFM 特性，语法为 `JFM=<JFM name>/{<JFM features>}` 。受北川宏典先生的 [fork 版本](https://github.com/h-kitagawa/ChineseJFM/tree/combine)的影响，所有风格的被整合进一个文件内，使用 JFM 特性调用。
+luatexja 可以使用 `/` 来调用 JFM 特性，语法为 `JFM=<JFM name>/{<JFM features>}` 。受北川宏典先生的 [fork 版本](https://github.com/h-kitagawa/ChineseJFM/tree/combine)的影响，所有风格的 JFM 被整合进一个文件内，使用 JFM 特性调用。
 
 ### 特性一览
 
@@ -16,9 +16,9 @@ luatexja 可以使用 `/` 来调用 JFM 特性，语法为 `JFM=<JFM name>/{<JFM
 
     直排特性，在直排时必须使用。
 
-    - `hwcl`
+* `hwcl`
 
-        半宽冒号特性，仅 zh_CN 拥有，必须在直排下使用。适用于部分竖排时冒号只占半宽的字体。
+    半宽冒号特性，仅 zh_CN 拥有，必须在直排下使用。适用于部分竖排时冒号只占半宽的字体。
 
 * `prop`
 
