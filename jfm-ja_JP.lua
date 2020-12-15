@@ -47,7 +47,8 @@ luatexja.jfont.define_jfm {
             [1] = aki(0.5, -1),
             [22] = aki(0.25),
             [3] = aki(0.25, -1)
-        }
+        },
+        round_threshold = 0.01
     },
     [1] = {
         -- 开括号
