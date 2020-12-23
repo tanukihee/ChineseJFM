@@ -1,3 +1,6 @@
+-- Chinese JFM for Simplified Chinese fonts (zh_CN)
+-- v1.0.0
+
 local is_vt, is_qj, is_bj, is_km, is_hwcl
 
 if luatexja.jfont.jfm_feature then

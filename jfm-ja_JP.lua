@@ -1,3 +1,6 @@
+-- Chinese JFM for Japanese fonts (ja_JP)
+-- v1.0.0
+
 local is_vt, is_qj, is_bj, is_km, is_prop
 
 if luatexja.jfont.jfm_feature then
