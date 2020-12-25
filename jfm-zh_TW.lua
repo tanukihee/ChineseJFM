@@ -1,5 +1,5 @@
 -- Chinese JFM for Traditional Chinese fonts (zh_TW)
--- v1.0.0
+-- v1.0.1
 
 local is_vt, is_qj, is_bj, is_km
 

@@ -1,57 +1,20 @@
-# 中文使用的 luatexja JFM 文件
+# Chinese JFM files
 
-为中文编写的 luatexja JFM 文件，提供全角、半角、开明三种风格，适用于简繁中文及日文字体的横直排。
+## Introduction
 
-## 使用方法
+Chinese JFM is a series of luatexja-jfm files for better Chinese typesetting, providing *quanjiao*, *banjiao*, and *kaiming* three styles and other fancy features. It can be used for both horizontal and vertical writing mode in Simplified/Traditional Chinese or Japanese fonts.
 
-luatexja 可以使用 `/` 来调用 JFM 特性，语法为 `JFM=<JFM name>/{<JFM features>}` 。受北川宏典先生的 [fork 版本](https://github.com/h-kitagawa/ChineseJFM/tree/combine)的影响，所有风格的 JFM 被整合进一个文件内，使用 JFM 特性调用。
+For detailed useages, please read the [documentation](doc.pdf) (in Chinese).
 
-### 特性一览
-
-* `quanjiao`、`banjiao`、`kaiming`
-
-    最基础的三种特性，即「全角」「半角」与「开明」。此三特性**必须**选择其中一种。
-
-* `vert`
-
-    直排特性，在直排时必须使用。
-
-* `hwcl`
-
-    半宽冒号特性，仅 zh_CN 拥有，必须在直排下使用。适用于部分竖排时冒号只占半宽的字体。
-
-* `prop`
-
-    比例宽度特性，仅 ja_JP 拥有。适用于日文的比例假名字体。
-
-## 挤压顺序
-
-JFM 文件中同时增加了 `priority` 的设置，配合 luatexja-adjust 包，可以进行有优先顺序的标点挤压。挤压顺序如下：
-
-* 最优先挤压引号、括号前后与间隔号两边的空格；
-
-* 其次挤压顿号、逗号、冒号、分号后的空格；
-
-* 最后挤压句号、问号、叹号后的空格。
-
-* 如果进行上述挤压后，仍无法达到行长要求，最后才会进行字间字距调整。
-
-\**注：以上对标点空白的描述是针对于简体中文的。对于标点置中的繁体中文，以上调整顺序仍然适用。但此时除括号外，可调整的空白变为标点两边的空白。全宽标点无空白可调整的，不作调整。*
-
-以上挤压规则是针对于全角风格的标点调整。对于半角与开明这种标点风格，若以「挤压」理解，顺序仍相同，但直观性就有所欠缺。事实上，JFM 文件中的标点是沿袭铅字与 InDesign 的习惯，认为标点只占半宽，全宽标点是半宽标点加上半宽空格的结果。因此上述规则在半宽标点的前提下应描述为：
-
-* 最先给句号、问号、叹号插空；
-
-* 其次添加顿号、逗号、冒号、分号后空格；
-
-* 最后调整引号、括号前后与间隔号两边的空格；
-
-* 如果进行上述调整后，仍无法达到行长要求，最后才会进行字间字距调整。
-
-「加法式」的标点调整，更加直观，也更容易理解。
-
-## 修改说明
+## Update info
 
 * v1.0.0
 
-    初次发布至 CTAN。
+First published to CTAN.
+
+* v1.0.1
+
+Update documentation.
+
+---
+Copyright (C) 2020 ListLee.

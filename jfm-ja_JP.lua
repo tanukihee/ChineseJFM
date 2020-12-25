@@ -1,5 +1,5 @@
 -- Chinese JFM for Japanese fonts (ja_JP)
--- v1.0.0
+-- v1.0.1
 
 local is_vt, is_qj, is_bj, is_km, is_prop
 

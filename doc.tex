@@ -1,0 +1,85 @@
+\documentclass[a4paper, fontset=adobe , punct=zh_CN/kaiming]{ctexart}
+\usepackage{luatexja-adjust}
+
+\def\+{\insertxkanjiskip}
+
+\usepackage[textwidth=36em , centering]{geometry}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+\title{\textbf{\textsf{ChineseJFM}文件}\hbox{}\thanks{\url{https://github.com/tanukihee/ChineseJFM}}}
+\author{ListLee}
+\date{\zhtoday \qquad v1.0.1}
+
+\begin{document}
+\maketitle
+
+\section{概述}
+\textsf{ChineseJFM}文件是为中文排版编写的luatexja-jfm文件，提供全角、半角、开明三种风格，适用于简繁中文及日文字体的横直排。
+
+虽然\textsf{luatexja}自带了一套全角、半角、开明的JFM文件，但在调整上缺少灵活性，同时也没有使用\+\verb|priority|特性。\textsf{ChineseJFM}文件中同时增加了\+\verb|priority|的设置，配合\textsf{luatexja-adjust}包，可以进行有优先顺序的标点挤压。\label{sec:pr}
+
+\section{使用方法}
+\textsf{luatexja}在20200919版本后更新了JFM features特性，基本语法为
+\begin{verbatim}
+    jfm = <JFM name>[/{<JFM features>}]
+\end{verbatim}
+
+\textsf{ChineseJFM}提供了\textsf{zh\_CN}、\textsf{zh\_TW}与\textsf{ja\_JP}三个文件，分别适用于简中字体（标点偏靠）、繁中字体（标点中置）与日文字体（冒号、分号中置，其他偏靠）；在3个JFM文件下，提供了\+\verb|quanjiao|、\verb|banjiao|与\+\verb|kaiming|三个基本特性。
+
+在使用\CTeX{}宏集或文档类时，只需要使用
+\begin{verbatim}
+    \documentclass[punct = zh_CN/quanjiao]{ctexart}
+\end{verbatim}
+或
+\begin{verbatim}
+    \usepackage[punct = zh_CN/kaiming]{ctex}
+\end{verbatim}
+即可。
+
+在使用\textsf{luatexja}或\textsf{ltj}文档类时，需要在调用\textsf{luatexja-fontspec}宏包后，以\begin{verbatim}
+    YokoFeatures = {JFM = {<JFM name>}}
+\end{verbatim}
+或
+\begin{verbatim}
+    TateFeatures = {JFM = {<JFM name>}}
+\end{verbatim}
+的形式调用。
+
+横排时，使用
+\begin{verbatim}
+    YokoFeatures = {JFM = {zh_CN/quanjiao}}
+\end{verbatim}
+直排时，使用
+\begin{verbatim}
+    TateFeatures = {JFM = {zh_CN/{quanjiao , vert}}}
+\end{verbatim}
+{\color{red}注意：在直排时，\emph{必须}同时使用\+\verb|vert|特性。}
+
+\section{特性一览}
+除上文介绍的\+\verb|quanjiao|、\verb|banjiao|、\verb|kaiming|与\+\verb|vert|特性外，\textsf{ChineseJFM}还提供了以下特性。
+
+\begin{description}
+    \item[\texttt{hwcl}] “half-width colon”，“半宽冒号”特性，适用于简中直排时，冒号分号只占半宽的字体（如华文宋体等），仅\textsf{zh\_CN}拥有。
+    \item[\texttt{prop}] “proportional”，“比例宽度”特性，使用于比例宽度的日文字体，比之于\textsf{luatexja}自带的\textsf{jfm-prop.lua}与\textsf{jfm-propv.lua}，\verb|prop|特性将此两者整合的同时，也提供了对标点间距的调整功能，仅\textsf{ja\_JP}拥有。
+\end{description}
+
+\section{挤压顺序}
+如第\ref{sec:pr}节所述，\textsf{ChineseJFM}文件中配有\+\verb|priority|的设置，配合\textsf{luatexja-adjust}包，可以进行有优先顺序的标点挤压。\textsf{ChineseJFM}沿袭传统铅字排版与现代DTP软件（如InDesign等）的习惯，认为标点只占半宽，全宽标点是半宽标点加上半宽铅空的结果。所谓的“标点挤压”更应说成是“标点间距调整”，调整顺序如下。
+\begin{itemize}
+    \item 最先给句号、问号、叹号插空；
+    \item 其次给顿号、逗号、冒号、分号插空；
+    \item 最后调整引号、括号前后与间隔号两边的空格；
+    \item 如果进行上述调整后，仍无法达到行长要求，最后才会进行字间字距调整。
+\end{itemize}
+
+根据标点位置，可以将标点分为偏靠标点、中置标点与全宽标点。对于偏靠标点，插空指在半宽标点后插入一个半宽铅空，对于中置标点，插空指在半宽标点前后各插入一个1/4宽铅空。全宽标点无空白可调整的，不作调整。
+
+\nocite{*}
+\begin{thebibliography}{9}
+\bibitem{孔雀计划} 刘庆（Eric Q L）．\textit{孔雀计划：中文字体排印的思路} ［EB/OL］．\\
+\raggedleft{\url{https://thetype.com/kongque/}}
+\end{thebibliography}
+
+\end{document}
