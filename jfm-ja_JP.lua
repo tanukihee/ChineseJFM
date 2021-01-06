@@ -1,5 +1,6 @@
 -- Chinese JFM for Japanese fonts (ja_JP)
 -- v1.0.1
+-- Copyright (c) 2020 -- 2021 ListLee.
 
 local is_vt, is_qj, is_bj, is_km, is_prop
 

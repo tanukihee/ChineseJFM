@@ -1,5 +1,6 @@
 -- Chinese JFM for Simplified Chinese fonts (zh_CN)
 -- v1.0.1
+-- Copyright (c) 2020 -- 2021 ListLee.
 
 local is_vt, is_qj, is_bj, is_km, is_hwcl
 
