@@ -1,18 +1,19 @@
 -- Chinese JFM for Simplified Chinese fonts (zh_CN)
--- v1.0.1
+-- v1.1.0
 -- Copyright (c) 2020 -- 2021 ListLee.
 
-local is_vt, is_qj, is_bj, is_km, is_hwcl
+local is_vt, is_qj, is_bj, is_km, is_hc, is_fz
 
 if luatexja.jfont.jfm_feature then
     is_vt = luatexja.jfont.jfm_feature.vert
     is_qj = luatexja.jfont.jfm_feature.quanjiao
     is_bj = luatexja.jfont.jfm_feature.banjiao
     is_km = luatexja.jfont.jfm_feature.kaiming
-    is_hwcl = luatexja.jfont.jfm_feature.hwcl
+    is_hc = luatexja.jfont.jfm_feature.hwcl
+    is_fz = luatexja.jfont.jfm_feature.fzpr
 end
 
-if is_hwcl then
+if is_hc then
     if not is_vt then
         tex.error('JFM feature "hwcl" can only be used in vertical mode')
     end
@@ -55,6 +56,7 @@ luatexja.jfont.define_jfm {
         italic = 0,
         glue = {
             [1] = aki(0.5, -1),
+            [10] = aki(0.5, -1),
             [3] = aki(0.25, -1)
         },
         round_threshold = 0.01
@@ -62,8 +64,6 @@ luatexja.jfont.define_jfm {
     [1] = {
         -- 开括号
         chars = {
-            '‘',
-            '“',
             '〈',
             '《',
             '「',
@@ -77,6 +77,22 @@ luatexja.jfont.define_jfm {
             '［',
             '｛',
             '｟'
+        },
+        align = is_fz and 'middle' or 'right',
+        left = 0,
+        down = 0,
+        width = 0.5,
+        height = is_vt and 0.5 or 0.88,
+        depth = is_vt and 0.5 or 0.12,
+        italic = 0,
+        glue = {
+            [3] = aki(0.25, -1)
+        }
+    },
+    [10] = {
+        chars = {
+            '‘',
+            '“'
         },
         align = 'right',
         left = 0,
@@ -92,8 +108,6 @@ luatexja.jfont.define_jfm {
     [2] = {
         -- 闭括号
         chars = {
-            '’',
-            '”',
             '〉',
             '》',
             '」',
@@ -109,6 +123,28 @@ luatexja.jfont.define_jfm {
             '｝',
             '｠'
         },
+        align = is_fz and 'middle' or 'left',
+        left = 0,
+        down = 0,
+        width = 0.5,
+        height = is_vt and 0.5 or 0.88,
+        depth = is_vt and 0.5 or 0.12,
+        italic = 0,
+        glue = {
+            [0] = aki(0.5, -1),
+            [1] = aki(0.5, -1),
+            [10] = aki(0.5, -1),
+            [3] = aki(0.25, -1),
+            [5] = aki(0.5, -1),
+            [51] = aki(0.5, -1),
+            [52] = aki(0.5, -1)
+        }
+    },
+    [20] = {
+        chars = {
+            '’',
+            '”'
+        },
         align = 'left',
         left = 0,
         down = 0,
@@ -119,7 +155,8 @@ luatexja.jfont.define_jfm {
         glue = {
             [0] = aki(0.5, -1),
             [1] = aki(0.5, -1),
-            [3] = aki(0.5, -1),
+            [10] = aki(0.5, -1),
+            [3] = aki(0.25, -1),
             [5] = aki(0.5, -1),
             [51] = aki(0.5, -1),
             [52] = aki(0.5, -1)
@@ -138,6 +175,7 @@ luatexja.jfont.define_jfm {
         glue = {
             [0] = aki(0.5),
             [1] = aki(0.5),
+            [10] = aki(0.5),
             [3] = aki(0.5),
             [5] = aki(0.5),
             [51] = aki(0.5),
@@ -150,17 +188,18 @@ luatexja.jfont.define_jfm {
         align = 'left',
         left = 0,
         down = 0,
-        width = is_vt and (is_hwcl and 0.5 or 1) or 0.5,
+        width = is_vt and (is_hc and 0.5 or 1) or 0.5,
         height = is_vt and 0.5 or 0.88,
         depth = is_vt and 0.5 or 0.12,
         italic = 0,
         glue = {
-            [0] = is_vt and (is_hwcl and aki(0.5) or {}) or aki(0.5),
-            [1] = is_vt and (is_hwcl and aki(0.5) or {}) or aki(0.5),
-            [3] = is_vt and (is_hwcl and aki(0.5) or aki(0.25, 1)) or aki(0.5),
-            [5] = is_vt and (is_hwcl and aki(0.5) or {}) or aki(0.5),
-            [51] = is_vt and (is_hwcl and aki(0.5) or {}) or aki(0.5),
-            [52] = is_vt and (is_hwcl and aki(0.5) or {}) or aki(0.5)
+            [0] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5),
+            [1] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5),
+            [10] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5),
+            [3] = is_vt and (is_hc and aki(0.5) or aki(0.25, 1)) or aki(0.5),
+            [5] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5),
+            [51] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5),
+            [52] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5)
         }
     },
     [3] = {
@@ -175,15 +214,18 @@ luatexja.jfont.define_jfm {
         italic = 0,
         glue = {
             [0] = aki(0.25, -1),
-            [1] = aki(0.5, -1),
+            [1] = aki(0.25, -1),
+            [10] = aki(0.25, -1),
             [2] = aki(0.25, -1),
+            [20] = aki(0.25, -1),
             [21] = aki(0.25, -1),
             [22] = aki(0.25, -1),
             [3] = aki(0.5, -1),
             [4] = aki(0.25, -1),
             [41] = aki(0.25, -1),
             [42] = aki(0.25, -1),
-            [5] = aki(0.25, -1)
+            [5] = aki(0.25, -1),
+            [6] = aki(0.25, -1)
         }
     },
     [4] = {
@@ -199,6 +241,7 @@ luatexja.jfont.define_jfm {
         glue = {
             [0] = aki(0.5, 1, true),
             [1] = aki(0.5, 1, true),
+            [10] = aki(0.5, 1, true),
             [3] = aki(0.5, 1, true),
             [5] = aki(0.5, 1, true),
             [51] = aki(0.5, 1, true),
@@ -218,6 +261,7 @@ luatexja.jfont.define_jfm {
         glue = {
             [0] = is_vt and {} or aki(0.5, 1, true),
             [1] = is_vt and {} or aki(0.5, 1, true),
+            [10] = is_vt and {} or aki(0.5, 1, true),
             [3] = is_vt and aki(0.25, -1) or aki(0.5, 1, true),
             [5] = is_vt and {} or aki(0.5, 1, true),
             [51] = is_vt and {} or aki(0.5, 1, true),
@@ -257,6 +301,7 @@ luatexja.jfont.define_jfm {
         italic = 0,
         glue = {
             [1] = aki(0.5, -1),
+            [10] = aki(0.5, -1),
             [3] = aki(0.25, -1)
         },
         kern = {
@@ -277,6 +322,7 @@ luatexja.jfont.define_jfm {
         italic = 0,
         glue = {
             [1] = aki(0.5, -1),
+            [10] = aki(0.5, -1),
             [3] = aki(0.25, -1)
         },
         kern = {
@@ -297,6 +343,7 @@ luatexja.jfont.define_jfm {
         italic = 0,
         glue = {
             [1] = aki(0.5, -1),
+            [10] = aki(0.5, -1),
             [3] = aki(0.25, -1)
         },
         kern = {
@@ -307,6 +354,9 @@ luatexja.jfont.define_jfm {
     },
     [6] = {
         -- box end
-        chars = {'boxbdd', 'parbdd', 'glue'}
+        chars = {'boxbdd', 'parbdd', 'glue'},
+        glue = {
+            [3] = aki(0.25, -1)
+        }
     }
 }

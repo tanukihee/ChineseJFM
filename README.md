@@ -1,4 +1,4 @@
-# Chinese JFM files
+# Chinese JFM
 
 ## Introduction
 
@@ -15,6 +15,12 @@ First published to CTAN.
 * v1.0.1
 
 Update documentation.
+
+* v1.1.0
+
+    - Add glue between middle punctuations and the begin or the end of `hbox`/`parbox`.
+
+    - Add `fzpr` feature for zh_CN.
 
 ---
 Copyright (c) 2020 -- 2021 ListLee.

@@ -1,15 +1,15 @@
 -- Chinese JFM for Japanese fonts (ja_JP)
--- v1.0.1
+-- v1.1.0
 -- Copyright (c) 2020 -- 2021 ListLee.
 
-local is_vt, is_qj, is_bj, is_km, is_prop
+local is_vt, is_qj, is_bj, is_km, is_pr
 
 if luatexja.jfont.jfm_feature then
     is_vt = luatexja.jfont.jfm_feature.vert
     is_qj = luatexja.jfont.jfm_feature.quanjiao
     is_bj = luatexja.jfont.jfm_feature.banjiao
     is_km = luatexja.jfont.jfm_feature.kaiming
-    is_prop = luatexja.jfont.jfm_feature.prop
+    is_pr = luatexja.jfont.jfm_feature.prop
 end
 
 if
@@ -43,7 +43,7 @@ luatexja.jfont.define_jfm {
         align = 'middle',
         left = 0,
         down = 0,
-        width = is_prop and 'prop' or 1,
+        width = is_pr and 'prop' or 1,
         height = is_vt and 0.5 or 0.88,
         depth = is_vt and 0.5 or 0.12,
         italic = 0,
@@ -161,7 +161,8 @@ luatexja.jfont.define_jfm {
             [3] = aki(0.5, -1),
             [4] = aki(0.25),
             [41] = aki(0.25),
-            [5] = aki(0.25)
+            [5] = aki(0.25),
+            [6] = aki(0.25)
         }
     },
     [3] = {
@@ -183,7 +184,8 @@ luatexja.jfont.define_jfm {
             [3] = aki(0.5, -1),
             [4] = aki(0.25, -1),
             [41] = aki(0.25, -1),
-            [5] = aki(0.25, -1)
+            [5] = aki(0.25, -1),
+            [6] = aki(0.25, -1)
         }
     },
     [4] = {
@@ -293,6 +295,10 @@ luatexja.jfont.define_jfm {
     },
     [6] = {
         -- box end
-        chars = {'boxbdd', 'parbdd', 'glue'}
+        chars = {'boxbdd', 'parbdd', 'glue'},
+        glue = {
+            [22] = aki(0.25),
+            [3] = aki(0.25, -1)
+        }
     }
 }

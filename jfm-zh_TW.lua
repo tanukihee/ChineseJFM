@@ -1,5 +1,5 @@
 -- Chinese JFM for Traditional Chinese fonts (zh_TW)
--- v1.0.1
+-- v1.1.0
 -- Copyright (c) 2020 -- 2021 ListLee.
 
 local is_vt, is_qj, is_bj, is_km
@@ -150,7 +150,8 @@ luatexja.jfont.define_jfm {
             [41] = aki(0.25),
             [5] = aki(0.25),
             [51] = aki(0.25),
-            [52] = aki(0.25)
+            [52] = aki(0.25),
+            [6] = aki(0.25)
         }
     },
     [22] = {
@@ -177,7 +178,8 @@ luatexja.jfont.define_jfm {
             [41] = is_vt and {} or aki(0.25),
             [5] = is_vt and {} or aki(0.25),
             [51] = is_vt and {} or aki(0.25),
-            [52] = is_vt and {} or aki(0.25)
+            [52] = is_vt and {} or aki(0.25),
+            [6] = is_vt and {} or aki(0.25)
         }
     },
     [3] = {
@@ -203,7 +205,8 @@ luatexja.jfont.define_jfm {
             [41] = aki(0.25, -1),
             [5] = aki(0.25, -1),
             [51] = aki(0.25, -1),
-            [52] = aki(0.25, -1)
+            [52] = aki(0.25, -1),
+            [6] = aki(0.25, -1)
         }
     },
     [4] = {
@@ -231,7 +234,8 @@ luatexja.jfont.define_jfm {
             [41] = aki(0.25, 1, true),
             [5] = aki(0.25, 1, true),
             [51] = aki(0.25, 1, true),
-            [52] = aki(0.25, 1, true)
+            [52] = aki(0.25, 1, true),
+            [6] = aki(0.25, 1, true)
         }
     },
     [41] = {
@@ -329,6 +333,12 @@ luatexja.jfont.define_jfm {
     },
     [6] = {
         -- box end
-        chars = {'boxbdd', 'parbdd', 'glue'}
+        chars = {'boxbdd', 'parbdd', 'glue'},
+        glue = {
+            [21] = aki(0.25),
+            [22] = is_vt and {} or aki(0.25),
+            [3] = aki(0.25, -1),
+            [4] = aki(0.25, 1, true)
+        }
     }
 }
