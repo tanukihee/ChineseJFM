@@ -10,17 +10,21 @@ For detailed useages, please read the [documentation](chinese-jfm.pdf) (in Chine
 
 * v1.0.0
 
-First published to CTAN.
+    First published to CTAN.
 
 * v1.0.1
 
-Update documentation.
+    Update documentation.
 
 * v1.1.0
 
     - Add glue between middle punctuations and the begin or the end of `hbox`/`parbox`.
 
     - Add `fzpr` feature for zh_CN.
+
+* v1.1.1
+
+    Fix bugs of `fzpr` under `vert` .
 
 ---
 Copyright (c) 2020 -- 2021 ListLee.

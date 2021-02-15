@@ -1,5 +1,5 @@
 -- Chinese JFM for Simplified Chinese fonts (zh_CN)
--- v1.1.0
+-- v1.1.1, 2021/02/15
 -- Copyright (c) 2020 -- 2021 ListLee.
 
 local is_vt, is_qj, is_bj, is_km, is_hc, is_fz
@@ -94,7 +94,7 @@ luatexja.jfont.define_jfm {
             '‘',
             '“'
         },
-        align = 'right',
+        align = is_vt and (is_fz and 'middle' or 'right') or 'right',
         left = 0,
         down = 0,
         width = 0.5,
@@ -145,7 +145,7 @@ luatexja.jfont.define_jfm {
             '’',
             '”'
         },
-        align = 'left',
+        align = is_vt and (is_fz and 'middle' or 'left') or 'left',
         left = 0,
         down = 0,
         width = 0.5,

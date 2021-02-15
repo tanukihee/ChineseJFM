@@ -1,5 +1,5 @@
 -- Chinese JFM for Traditional Chinese fonts (zh_TW)
--- v1.1.0
+-- v1.1.1, 2021/02/15
 -- Copyright (c) 2020 -- 2021 ListLee.
 
 local is_vt, is_qj, is_bj, is_km
