@@ -2,7 +2,7 @@
 -- v1.1.1, 2021/02/15
 -- Copyright (c) 2020 -- 2021 ListLee.
 
-local is_vt, is_qj, is_bj, is_km, is_hc, is_fz
+local is_vt, is_qj, is_bj, is_km, is_hc, is_fz, is_lg
 
 if luatexja.jfont.jfm_feature then
     is_vt = luatexja.jfont.jfm_feature.vert
@@ -11,11 +11,18 @@ if luatexja.jfont.jfm_feature then
     is_km = luatexja.jfont.jfm_feature.kaiming
     is_hc = luatexja.jfont.jfm_feature.hwcl
     is_fz = luatexja.jfont.jfm_feature.fzpr
+    is_lg = luatexja.jfont.jfm_feature.lgp
 end
 
 if is_hc then
     if not is_vt then
         tex.error('JFM feature "hwcl" can only be used in vertical mode')
+    end
+end
+
+if is_lg then
+    if not is_vt then
+	tex.error('JFM feature "lgp" can only be used in vertical mode')
     end
 end
 
@@ -164,7 +171,7 @@ luatexja.jfont.define_jfm {
     },
     [21] = {
         -- 逗号、顿号
-        chars = {'、', '，'},
+        chars = is_vt and (is_lg and {}) or {'、', '，'},
         align = 'left',
         left = 0,
         down = 0,
@@ -182,9 +189,31 @@ luatexja.jfont.define_jfm {
             [52] = aki(0.5)
         }
     },
+    [211] = {
+        -- 逗号（行间）
+	chars = is_vt and (is_lg and {'，'}) or {},
+        align = 'left',
+	left = 0.40,
+	down = -0.26,
+        width = 0.0,
+	height = 0.50,
+	depth = 0.50,
+	italic = 0.0
+    },
+    [212] = {
+	-- 顿号（行间）
+	chars = is_vt and (is_lg and {'、'}) or {},
+	align = 'left',
+	left = 0.38,
+	down = -0.34,
+        width = 0.0,
+	height = 0.50,
+	depth = 0.50,
+	italic = 0.0
+    },
     [22] = {
         -- 冒号、分号
-        chars = {'：', '；'},
+        chars = is_vt and (is_lg and {}) or {'：', '；'},
         align = 'left',
         left = 0,
         down = 0,
@@ -201,6 +230,28 @@ luatexja.jfont.define_jfm {
             [51] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5),
             [52] = is_vt and (is_hc and aki(0.5) or {}) or aki(0.5)
         }
+    },
+    [221] = {
+	-- 冒号（行间）
+	chars = is_vt and (is_lg and {'：'}) or {},
+	align = 'left',
+	left = 0.72,
+	down = -0.34,
+        width = 0.0,
+	height = 0.50,
+	depth = 0.50,
+	italic = 0.0
+    },
+    [222] = {
+	-- 分号（行间）
+	chars = is_vt and (is_lg and {'；'}) or {},
+	align = 'left',
+	left = 0.78,
+	down = -0.34,
+        width = 0.0,
+	height = 0.50,
+	depth = 0.50,
+	italic = 0.0
     },
     [3] = {
         -- 间隔号
@@ -230,7 +281,7 @@ luatexja.jfont.define_jfm {
     },
     [4] = {
         -- 句号
-        chars = {'。', '．'},
+        chars = is_vt and (is_lg and {}) or {'。', '．'},
         align = 'left',
         left = 0,
         down = 0,
@@ -247,6 +298,28 @@ luatexja.jfont.define_jfm {
             [51] = aki(0.5, 1, true),
             [52] = aki(0.5, 1, true)
         }
+    },
+    [401] = {
+	-- 句号c（行间）
+	chars = is_vt and (is_lg and {'。'}) or {},
+        align = 'left',
+	left = 0.42,
+	down = -0.35,
+        width = 0.0,
+	height = 0.50,
+	depth = 0.50,
+	italic = 0.0
+    },
+    [402] = {
+	-- 句号j（行间）
+	chars = is_vt and (is_lg and {'．'}) or {},
+        align = 'left',
+	left = 0.34,
+	down = -0.28,
+        width = 0.0,
+	height = 0.50,
+	depth = 0.50,
+	italic = 0.0
     },
     [41] = {
         -- 叹号、问号
