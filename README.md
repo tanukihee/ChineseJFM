@@ -28,7 +28,7 @@ For detailed useages, please read the [documentation](chinese-jfm.pdf) (in Chine
 
 * v1.1.2
 
-    Add 'lgp' feature for linegap punctuations.
+    Add feature 'lgp' for linegap punctuations.
 
 ---
-Copyright (c) 2020 -- 2021 ListLee.
+Copyright (c) 2020 -- 2023 ListLee.
