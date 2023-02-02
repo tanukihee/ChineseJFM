@@ -26,5 +26,9 @@ For detailed useages, please read the [documentation](chinese-jfm.pdf) (in Chine
 
     Fix bugs of `fzpr` under `vert` .
 
+* v1.1.2
+
+    Add 'lgp' feature for linegap punctuations.
+
 ---
 Copyright (c) 2020 -- 2021 ListLee.
