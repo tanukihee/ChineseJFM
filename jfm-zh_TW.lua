@@ -162,26 +162,26 @@ luatexja.jfont.define_jfm {
         }
     },
     [211] = {
-	-- 逗号（行间）
-	chars = is_vt and (is_lg and {'，'}) or {},
+        -- 逗号（行间）
+        chars = is_vt and (is_lg and {'，'}) or {},
         align = 'left',
-	left = 0.62,
-	down = -0.58,
+        left = 0.62,
+        down = -0.58,
         width = 0.0,
-	height = 0.50,
-	depth = 0.50,
-	italic = 0.0
+        height = 0.50,
+        depth = 0.50,
+        italic = 0.0
     },
     [212] = {
-	-- 顿号（行间）
-	chars = is_vt and (is_lg and {'、'}) or {},
-	align = 'left',
-	left = 0.38,
-	down = -0.34,
+        -- 顿号（行间）
+        chars = is_vt and (is_lg and {'、'}) or {},
+        align = 'left',
+        left = 0.38,
+        down = -0.34,
         width = 0.0,
-	height = 0.50,
-	depth = 0.50,
-	italic = 0.0
+        height = 0.50,
+        depth = 0.50,
+        italic = 0.0
     },
     [22] = {
         -- 冒号、分号
@@ -212,26 +212,26 @@ luatexja.jfont.define_jfm {
         }
     },
     [201] = {
-	-- 冒号（行间）
-	chars = is_vt and (is_lg and {'：'}) or {},
+        -- 冒号（行间）
+        chars = is_vt and (is_lg and {'：'}) or {},
         align = 'left',
-	left = 0.94,
-	down = -0.58,
+        left = 0.94,
+        down = -0.58,
         width = 0.0,
-	height = 0.50,
-	depth = 0.50,
-	italic = 0.0
+        height = 0.50,
+        depth = 0.50,
+        italic = 0.0
     },
     [202] = {
-	-- 分号（行间）
-	chars = is_vt and (is_lg and {'；'}) or {},
+        -- 分号（行间）
+        chars = is_vt and (is_lg and {'；'}) or {},
         align = 'left',
-	left = 0.96,
-	down = -0.58,
+        left = 0.96,
+        down = -0.58,
         width = 0.0,
-	height = 0.50,
-	depth = 0.50,
-	italic = 0.0
+        height = 0.50,
+        depth = 0.50,
+        italic = 0.0
     },
     [3] = {
         -- 间隔号
@@ -290,26 +290,26 @@ luatexja.jfont.define_jfm {
         }
     },
     [401] = {
-	-- 句号c（行间）
-	chars = is_vt and (is_lg and {'。'}) or {},
+        -- 句号c（行间）
+        chars = is_vt and (is_lg and {'。'}) or {},
         align = 'left',
-	left = 0.42,
-	down = -0.35,
+        left = 0.42,
+        down = -0.35,
         width = 0.0,
-	height = 0.50,
-	depth = 0.50,
-	italic = 0.0
+        height = 0.50,
+        depth = 0.50,
+        italic = 0.0
     },
     [402] = {
-	-- 句号j（行间）
-	chars = is_vt and (is_lg and {'．'}) or {},
+        -- 句号j（行间）
+        chars = is_vt and (is_lg and {'．'}) or {},
         align = 'left',
-	left = 0.68,
-	down = -0.58,
+        left = 0.68,
+        down = -0.58,
         width = 0.0,
-	height = 0.50,
-	depth = 0.50,
-	italic = 0.0
+        height = 0.50,
+        depth = 0.50,
+        italic = 0.0
     },
     [41] = {
         -- 问号、感叹号
