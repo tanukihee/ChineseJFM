@@ -1,0 +1,12 @@
+*.*
+
+!doc/chinese-jfm.pdf
+!doc/chinese-jfm.tex
+
+!pics/*.sty
+!pics/*.tex
+!pics/*.pdf
+
+!src/*.lua
+
+!.gitignore

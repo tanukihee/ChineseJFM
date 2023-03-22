@@ -46,13 +46,12 @@ if isHwColon and not isVert then
     tex.error('JFM feature "hwcl" can only be used in vertical mode.')
 end
 
-if ((isQuanjiao and 1 or 0) + (isBanjiao and 1 or 0) + (isKaiming and 1 or 0) > 1) then
+if (isQuanjiao and 1 or 0) + (isBanjiao and 1 or 0) + (isKaiming and 1 or 0) > 1 then
     tex.error('You can specify ONLY ONE feature among "quanjiao", "banjiao" and "kaiming"')
 end
 
-if isKaiming then
-    luatexbase.module_info("chinese-jfm",
-        "The kaiming feature is now defaultly loaded and it doesn't need to be explicitly loaded anymore")
+if (isQuanjiao and 1 or 0) + (isBanjiao and 1 or 0) + (isKaiming and 1 or 0) == 1 then
+    luatexbase.module_info("chinese-jfm", "No jfm feature specified. Using kaiming feature by default.")
 end
 
 --- 插入空白量

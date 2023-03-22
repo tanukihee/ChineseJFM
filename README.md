@@ -9,11 +9,9 @@ For detailed useages, please read the [documentation](chinese-jfm.pdf) (in Chine
 ## Update info
 
 * v1.0.0
-
     First published to CTAN.
 
 * v1.0.1
-
     Update documentation.
 
 * v1.1.0
@@ -23,7 +21,6 @@ For detailed useages, please read the [documentation](chinese-jfm.pdf) (in Chine
     - Add `fzpr` feature for zh_CN.
 
 * v1.1.1
-
     Fix bugs of `fzpr` under `vert` .
 
 ---

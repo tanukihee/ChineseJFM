@@ -1,9 +1,10 @@
 -- The enum of punctuations of chinese-jfm
 -- v2.0.0, 2022/xx/xx
 -- Copyright (c) 2020 -- 2022 ListLee.
+
 local punct = {
     -- 汉字
-    KANJI = 0,
+    IDEOGRAPH = 0,
     -- 逗号、顿号
     COMMA = 1,
     -- 句号
