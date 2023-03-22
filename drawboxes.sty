@@ -1,0 +1,75 @@
+\ProvidesExplPackage{drawboxes}{2022/04/22}{0.0.1}{Draw en boxes and em boxes for chinese-jfm}
+
+\RequirePackage{xcolor}
+
+\tl_new:N \l_default_em_tl
+\sys_if_engine_luatex:TF
+  { \tl_set:Nn \l_default_em_tl { \zw } }
+  { \tl_set:Nn \l_default_em_tl { em } }
+
+\dim_set:Nn \fboxrule { 0.025 \l_default_em_tl }
+\dim_set:Nn \fboxsep { - \fboxrule }
+
+\cs_new:Nn \draw_cstrut:
+{
+  \rule [ \dim_eval:n { -1 \l_default_em_tl * 120/1000 } ]
+    { \c_zero_dim } { 1 \l_default_em_tl }
+}
+
+\cs_set:Npn \draw_box_by_width:n #1
+  {
+    \textcolor [ HTML ] { 9999FF }
+      { \fbox { \draw_cstrut: \hbox_to_wd:nn { #1 \l_default_em_tl } {} } }
+  }
+
+\cs_set:Npn \draw_rule_by_width:n #1
+  {
+    \textcolor [ HTML ] { 9999FF }
+      {
+        \rule [ \dim_eval:n { -1 \l_default_em_tl * 120/1000 } ]
+          { 1 \l_default_em_tl } { 1 \l_default_em_tl }
+      }
+  }
+
+\NewDocumentCommand { \drawBoxByText } { m }
+  {
+    \mode_leave_vertical:
+    \hbox_overlap_right:n
+      {
+        \int_step_inline:nn { \str_count:n {#1} }
+          {
+            \int_compare:nNnTF { \int_mod:nn {##1} {5} } = { 0 }
+              { \draw_rule_by_width:n { 1 } }
+              { \draw_box_by_width:n { 1 } }
+          }
+      }
+    #1
+  }
+
+\NewDocumentCommand { \drawFwBox } { m }
+  {
+    \mode_leave_vertical:
+    \hbox_overlap_right:n
+      {
+        \int_step_inline:nn {#1}
+          {
+            \int_compare:nNnTF { \int_mod:nn {##1} {5} } = { 0 }
+              { \draw_rule_by_width:n { 1 } }
+              { \draw_box_by_width:n { 1 } }
+          }
+      }
+  }
+
+\NewDocumentCommand { \drawHwBox } { m }
+  {
+    \mode_leave_vertical:
+    \hbox_overlap_right:n
+      { \int_step_inline:nn {#1} { \draw_box_by_width:n { 0.5 } } }
+  }
+
+\NewDocumentCommand { \drawQwBox } { m }
+  {
+    \mode_leave_vertical:
+    \hbox_overlap_right:n
+      { \int_step_inline:nn {#1} { \draw_box_by_width:n { 0.25 } } }
+  }
