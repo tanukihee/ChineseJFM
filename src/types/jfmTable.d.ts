@@ -7,18 +7,15 @@ export type JfmTable = {
   zh: number;
   kanjiskip?: [number, number, number];
   xkanjiskip?: [number, number, number];
-} & Partial<{
-  [T in CharacterType | number]: T extends CharacterType.IDEOGRAPH
-    ? Omit<CharClass, "chars">
-    : CharClass;
-}>;
+  [type: number]: CharClass;
+};
 
 export type CharClass = {
-  chars: string[];
-  width: number | "prop";
-  height: number | "prop";
-  depth: number | "prop";
-  italic: number | "prop";
+  chars?: Array<string | -1>;
+  width?: number | "prop";
+  height?: number | "prop";
+  depth?: number | "prop";
+  italic?: number | "prop";
   left?: number;
   down?: number;
   align?: "left" | "middle" | "right";

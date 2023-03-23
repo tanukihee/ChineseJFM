@@ -1,8 +1,5 @@
-import { JfmTable } from "./types/jfm";
-import { createJfmTable } from "./util/createJfmTable";
+import { JfmTable } from "./types/jfmTable";
 import { defineJfm } from "./util/texUtils";
-
-const t1 = createJfmTable();
 
 const t2: JfmTable = {
   dir: "yoko",

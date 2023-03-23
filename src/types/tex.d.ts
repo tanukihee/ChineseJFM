@@ -1,4 +1,4 @@
-import { JfmTable } from "./jfm";
+import { JfmTable } from "./jfmTable";
 
 /** @noSelf **/
 export interface LuaTeXBase {
