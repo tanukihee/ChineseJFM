@@ -1,0 +1,17 @@
+{
+  "name": "chinese-jfm",
+  "version": "2.0.0",
+  "description": "Source files to generate the latex package chinese-jfm",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tstl --watch",
+    "build": "tstl"
+  },
+  "keywords": [],
+  "author": "ListLee",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "typescript-to-lua": "^1.14.0"
+  }
+}

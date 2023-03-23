@@ -1,4 +1,5 @@
 *.*
+node_modules/
 
 !doc/chinese-jfm.pdf
 !doc/chinese-jfm.tex
@@ -7,6 +8,10 @@
 !pics/*.tex
 !pics/*.pdf
 
-!src/*.lua
+!legacy/*.*
+!src/*.ts
 
 !.gitignore
+!.editorconfig
+!package.json
+!tsconfig.json
