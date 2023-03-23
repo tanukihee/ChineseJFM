@@ -9,9 +9,11 @@ node_modules/
 !pics/*.pdf
 
 !legacy/*.*
-!src/*.ts
+!src/**
+!test/*.test.ts
 
 !.gitignore
 !.editorconfig
 !package.json
 !tsconfig.json
+!jest.config.ts
