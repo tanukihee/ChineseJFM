@@ -1,5 +1,3 @@
-import { CharacterType } from "../CharacterType";
-
 export type JfmTable = {
   version?: 1 | 2 | 3;
   dir: "yoko" | "tate";
@@ -11,7 +9,7 @@ export type JfmTable = {
 };
 
 export type CharClass = {
-  chars?: Array<string | -1>;
+  chars?: Chars;
   width?: number | "prop";
   height?: number | "prop";
   depth?: number | "prop";
@@ -19,22 +17,30 @@ export type CharClass = {
   left?: number;
   down?: number;
   align?: "left" | "middle" | "right";
-  kern?: {
-    [T in CharacterType]?: number;
-  };
-  glue?: {
-    [T in CharacterType]?: {
-      1: number;
-      2: number;
-      3: number;
-      priority?: [JfmGluePriority, JfmGluePriority];
-      kanjiskip_natural?: number;
-      kanjiskip_stretch?: number;
-      kanjiskip_shrink?: number;
-      end_adjust?: [number, number, number?];
-      round_threshold?: number;
-    };
-  };
+  kern?: Record<number, number>;
+  glue?: Record<number, Glue>;
 };
 
 type JfmGluePriority = -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3;
+type Glue = {
+  1: number;
+  2: number;
+  3: number;
+  priority?: [JfmGluePriority, JfmGluePriority];
+  kanjiskip_natural?: number;
+  kanjiskip_stretch?: number;
+  kanjiskip_shrink?: number;
+  end_adjust?: [number, number, number?];
+  round_threshold?: number;
+};
+type Chars =
+  | string[]
+  | (
+      | "boxbdd"
+      | "parbdd"
+      | "jcharbdd"
+      | "alchar"
+      | "nox alchar"
+      | "glue"
+      | -1
+    )[];

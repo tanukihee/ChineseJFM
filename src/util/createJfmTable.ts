@@ -1,6 +1,6 @@
-import { CharacterType } from "../CharacterType";
+import { CharacterType } from "../Characters";
 import { JfmFeatures } from "../types/jfmFeature";
-import { CharClass, JfmTable } from "../types/jfmTable";
+import { CharClass, Chars, JfmTable } from "../types/jfmTable";
 
 export const createJfmTable = (
   name: "cn" | "tw" | "jp",
@@ -8,7 +8,7 @@ export const createJfmTable = (
 ) => {
   const createBaseCharClass = (
     width: number,
-    chars?: Array<string | -1>,
+    chars?: Chars,
     optional?: Pick<CharClass, "left" | "down" | "align">
   ) =>
     features.vert
