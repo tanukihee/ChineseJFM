@@ -1,10 +1,10 @@
 import { CharacterType } from "../Characters";
-import { JfmFeatures } from "../types/jfmFeature";
+import { JfmFeature } from "../types/jfmFeature";
 import { CharClass, Chars, JfmTable } from "../types/jfmTable";
 
 export const createJfmTable = (
   name: "cn" | "tw" | "jp",
-  features: JfmFeatures
+  features: JfmFeature
 ) => {
   const createBaseCharClass = (
     width: number,

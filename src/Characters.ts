@@ -1,3 +1,5 @@
+import { Chars } from "./types/jfmTable";
+
 export enum CharacterType {
   /** 汉字 */
   IDEOGRAPH = 0,
@@ -33,7 +35,8 @@ export enum CharacterType {
   BOX,
 }
 
-export const CharacterList = {
+export const CharacterList: Record<CharacterType, Chars | undefined> = {
+  [CharacterType.IDEOGRAPH]: undefined,
   [CharacterType.COMMA]: ["、", "，"],
   [CharacterType.PERIOD]: ["。", "．"],
   [CharacterType.COLON]: ["：", "；"],
@@ -93,4 +96,4 @@ export const CharacterList = {
     "glue",
     -1,
   ],
-} as const;
+};

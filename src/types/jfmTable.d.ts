@@ -19,6 +19,7 @@ export type CharClass = {
   align?: "left" | "middle" | "right";
   kern?: Record<number, number>;
   glue?: Record<number, Glue>;
+  round_threshold?: number;
 };
 
 type JfmGluePriority = -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3;
