@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "tstl --watch",
-    "build": "tstl"
+    "build": "pwsh .\\script\\clean.ps1 -dist -test && tstl && pwsh .\\script\\copy.ps1",
+    "clean dist": "pwsh .\\script\\clean.ps1 -dist",
+    "clean test": "pwsh .\\script\\clean.ps1 -test",
+    "copy": "pwsh .\\script\\clean.ps1 -test && pwsh .\\script\\copy.ps1"
   },
   "keywords": [],
   "author": "ListLee",

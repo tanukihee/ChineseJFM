@@ -8,8 +8,9 @@ node_modules/
 !pics/*.tex
 !pics/*.pdf
 
-!legacy/*.*
+!legacy/**
 !src/**
+!script/**
 
 !.gitignore
 !.editorconfig

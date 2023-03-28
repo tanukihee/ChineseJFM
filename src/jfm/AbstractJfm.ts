@@ -4,7 +4,7 @@ import { CharClass, JfmTable } from "../types/jfmTable";
 
 export abstract class AbstractJfm implements JfmTable {
   constructor(locale: Locale, feature: BaseJfmFeature) {
-    this.dir = feature.vert ? "tate" : "yoko";
+    this.dir = feature.isVert ? "tate" : "yoko";
 
     const createCharClass = (
       type: CharacterType,
@@ -15,8 +15,8 @@ export abstract class AbstractJfm implements JfmTable {
         : {
             chars: CharacterList[type],
             width: 1,
-            height: feature.vert ? 0.5 : 0.88,
-            depth: feature.vert ? 0.5 : 0.12,
+            height: feature.isVert ? 0.5 : 0.88,
+            depth: feature.isVert ? 0.5 : 0.12,
             italic: 0,
             align: "left",
             left: 0,
@@ -25,6 +25,7 @@ export abstract class AbstractJfm implements JfmTable {
           };
 
     this[CharacterType.IDEOGRAPH] = createCharClass(CharacterType.IDEOGRAPH, {
+      chars: undefined,
       round_threshold: 0.01,
     });
     this[CharacterType.COMMA] = createCharClass(CharacterType.COMMA, {
@@ -36,7 +37,7 @@ export abstract class AbstractJfm implements JfmTable {
       align: locale === "zh_TW" ? "middle" : "left",
     });
     this[CharacterType.COLON] = createCharClass(CharacterType.COLON, {
-      width: feature.vert ? 1 : 0.5,
+      width: feature.isVert ? 1 : 0.5,
       align: locale === "zh_CN" ? "left" : "middle",
     });
     this[CharacterType.OPEN_PAREN] = createCharClass(CharacterType.OPEN_PAREN, {

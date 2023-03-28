@@ -35,8 +35,8 @@ export enum CharacterType {
   BOX,
 }
 
-export const CharacterList: Record<CharacterType, Chars | undefined> = {
-  [CharacterType.IDEOGRAPH]: undefined,
+export const CharacterList: Record<CharacterType, Chars> = {
+  [CharacterType.IDEOGRAPH]: [],
   [CharacterType.COMMA]: ["、", "，"],
   [CharacterType.PERIOD]: ["。", "．"],
   [CharacterType.COLON]: ["：", "；"],

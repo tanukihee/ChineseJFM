@@ -18,21 +18,19 @@ export type CharClass = {
   down?: number;
   align?: "left" | "middle" | "right";
   kern?: Record<number, number>;
-  glue?: Record<number, Glue>;
+  glue?: Record<number, Glue | undefined>;
   round_threshold?: number;
 };
 
-type JfmGluePriority = -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3;
 type Glue = {
   1: number;
   2: number;
   3: number;
-  priority?: [JfmGluePriority, JfmGluePriority];
+  priority?: [number, number];
   kanjiskip_natural?: number;
   kanjiskip_stretch?: number;
   kanjiskip_shrink?: number;
   end_adjust?: [number, number, number?];
-  round_threshold?: number;
 };
 type Chars =
   | string[]
