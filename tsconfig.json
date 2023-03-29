@@ -4,9 +4,10 @@
     "target": "ESNext",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
-    "types": [],
+    "types": ["jest", "node"],
     "strict": true,
-    "rootDir": "./src",
-    "outDir": "./dist"
-  }
+    "outDir": "./dist",
+    "esModuleInterop": true
+  },
+  "include": ["./src"]
 }

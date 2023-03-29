@@ -29,9 +29,24 @@ export const providesJfm = (locale: Locale, jfm: JfmTable) => {
   defineJfm(jfm);
 };
 
-// TODO implement it
-export const getJfmFeature = <T>(name: string, defaultVal?: T) =>
-  luatexja.jfont.jfm_feature?.[name];
+export const getJfmFeature = <T>(
+  name: string,
+  defaultValue?: { ifTrue: T; ifFalse: T }
+) => {
+  type R = unknown extends T ? boolean : string;
+
+  const feature = luatexja.jfont.jfm_feature?.[name];
+
+  if (defaultValue === undefined) {
+    return (feature !== undefined) as R;
+  }
+
+  if (feature === undefined) {
+    return defaultValue.ifFalse as R;
+  }
+
+  return (feature === true ? defaultValue.ifTrue : feature) as R;
+};
 
 export const getJfmStyle = () => {
   const kaiming = getJfmFeature("kaiming");
@@ -67,7 +82,7 @@ export const createGlue: (
   (style) =>
   (width, priority = 0, isKaimingPunct = false, optional) =>
     (style === "banjiao" && isKaimingPunct) ||
-    (style === "quanjiao" && !isKaimingPunct)
+    (style !== "quanjiao" && !isKaimingPunct)
       ? { 1: 0, 2: width, 3: 0, priority: [priority, -priority], ...optional }
       : {
           1: width,

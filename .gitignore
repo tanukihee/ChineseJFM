@@ -16,4 +16,6 @@ node_modules/
 !.editorconfig
 !package.json
 !tsconfig.json
-!jest.config.ts
+!jest.config.js
+
+!test/*.test.ts

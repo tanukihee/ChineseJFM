@@ -8,13 +8,17 @@
     "build": "pwsh .\\script\\clean.ps1 -dist -test && tstl && pwsh .\\script\\copy.ps1",
     "clean dist": "pwsh .\\script\\clean.ps1 -dist",
     "clean test": "pwsh .\\script\\clean.ps1 -test",
-    "copy": "pwsh .\\script\\clean.ps1 -test && pwsh .\\script\\copy.ps1"
+    "copy": "pwsh .\\script\\clean.ps1 -test && pwsh .\\script\\copy.ps1",
+    "test": "jest"
   },
   "keywords": [],
   "author": "ListLee",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.0",
     "@types/node": "^18.15.10",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
     "typescript-to-lua": "^1.14.0"
