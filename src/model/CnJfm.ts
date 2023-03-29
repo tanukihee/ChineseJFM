@@ -1,6 +1,6 @@
-import { CharacterType } from "../Characters";
+import { CharacterType } from "../asset/Characters";
 import { CnJfmFeature } from "../types/jfmFeature";
-import { createGlue, mapGlues } from "../util/texUtils";
+import { createGlue, mapGlues } from "../util/jfmUtils";
 import { AbstractJfm } from "./AbstractJfm";
 
 export class CnJfm extends AbstractJfm {

@@ -1,4 +1,4 @@
-import { Chars } from "./types/jfmTable";
+import { Chars } from "../types/jfmTable";
 
 export enum CharacterType {
   /** 汉字 */

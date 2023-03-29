@@ -1,73 +1,34 @@
 describe("jfm feature", () => {
-  const theFeature: { [name: string]: string | boolean } = {
+  const theFeature: { [name: string]: string | boolean | undefined } = {
     boolFeatureTrue: true,
     valFeatureVal: "val",
     valFeatureTrue: true,
   };
 
-  const expectedFeature = {
-    boolFeatureTrue: true,
-    boolFeatureFalse: false,
-    valFeatureVal: "val",
-    valFeatureTrue: "default true",
-    valFeatureFalse: "default false",
-  };
+  const getBoolJfmFeature = (name: string) => !!theFeature[name];
 
-  const getJfmFeature = <T>(
-    name: string,
-    defaultValue?: { ifTrue: T; ifFalse: T }
-  ) => {
-    type R = unknown extends T ? boolean : T;
-
-    const feature = theFeature[name];
-
-    if (defaultValue === undefined) {
-      return (feature !== undefined) as R;
-    }
-
-    if (feature === undefined) {
-      return defaultValue.ifFalse as R;
-    }
-
-    return (feature === true ? defaultValue.ifTrue : feature) as R;
-  };
+  const getStringJfmFeature = (name: string, defalutVal?: string) =>
+    (defalutVal === undefined ? theFeature[name] : defalutVal) as
+      | string
+      | undefined;
 
   it("should get bool feature when true", () => {
-    expect(getJfmFeature("boolFeatureTrue")).toBe(
-      expectedFeature.boolFeatureTrue
-    );
+    expect(getBoolJfmFeature("boolFeatureTrue")).toBeTruthy();
   });
 
   it("should get bool feature when false", () => {
-    expect(getJfmFeature("boolFeatureFalse")).toBe(
-      expectedFeature.boolFeatureFalse
-    );
+    expect(getBoolJfmFeature("boolFeatureFalse")).toBeFalsy();
   });
 
   it("should get value feature when value given", () => {
-    expect(
-      getJfmFeature("valFeatureVal", {
-        ifTrue: "default true",
-        ifFalse: "default false",
-      })
-    ).toBe(expectedFeature.valFeatureVal);
+    expect(getStringJfmFeature("valFeatureVal")).toBe("val");
   });
 
   it("should get value feature when true", () => {
-    expect(
-      getJfmFeature("valFeatureTrue", {
-        ifTrue: "default true",
-        ifFalse: "default false",
-      })
-    ).toBe(expectedFeature.valFeatureTrue);
+    expect(getStringJfmFeature("valFeatureTrue", "default")).toBe("default");
   });
 
   it("should get value feature when false", () => {
-    expect(
-      getJfmFeature("valFeatureFalse", {
-        ifTrue: "default true",
-        ifFalse: "default false",
-      })
-    ).toBe(expectedFeature.valFeatureFalse);
+    expect(getStringJfmFeature("valFeatureFalse")).toBe(undefined);
   });
 });

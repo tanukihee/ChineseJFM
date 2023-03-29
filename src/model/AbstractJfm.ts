@@ -1,9 +1,16 @@
-import { CharacterList, CharacterType } from "../Characters";
+import { CharacterList, CharacterType } from "../asset/Characters";
 import { BaseJfmFeature, Locale } from "../types/jfmFeature";
 import { CharClass, JfmTable } from "../types/jfmTable";
 
 export abstract class AbstractJfm implements JfmTable {
   constructor(locale: Locale, feature: BaseJfmFeature) {
+    luatexbase.module_info(
+      "chinese-jfm",
+      `JFM ${locale} loaded, features\n${Object.keys(feature)
+        .map((k) => `"${k}" = ${feature[k as keyof BaseJfmFeature]}`)
+        .join("\n")}\ndetected.`
+    );
+
     this.dir = feature.isVert ? "tate" : "yoko";
 
     const createCharClass = (

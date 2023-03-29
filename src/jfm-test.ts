@@ -1,15 +1,22 @@
-import { CnJfm } from "./jfm/CnJfm";
-import { getJfmStyle, getJfmFeature, defineJfm } from "./util/texUtils";
+import { CnJfm } from "./model/CnJfm";
+import {
+  getBoolJfmFeature,
+  getJfmStyle,
+  getStringJfmFeature,
+} from "./util/jfmUtils";
+import { providesModule } from "./util/texUtils";
+
+providesModule("zh_CN");
 
 const jfm = new CnJfm({
   isVert: false,
   style: getJfmStyle(),
   hang: 0,
-  isHalfWidthColon: getJfmFeature("hwcl"),
-  fzParenthesis: Number(getJfmFeature("fzpr", { ifTrue: 0.15, ifFalse: 0 })),
+  isHalfWidthColon: getBoolJfmFeature("hwcl"),
+  fzParenthesis: Number(getStringJfmFeature("fzpr", "0.15")),
 });
 
-defineJfm(jfm);
+luatexja.jfont.define_jfm(jfm);
 
 // console.log(getJfmStyle());
 

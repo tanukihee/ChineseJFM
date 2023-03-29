@@ -2,26 +2,16 @@ import { JfmTable } from "./jfmTable";
 
 /** @noSelf **/
 export interface LuaTeXBase {
-  provides_module: (module: {
-    name: string;
-    info: string;
-    date: string;
-    version: string;
-  }) => void;
-
   module_info: (name: string, info: string) => void;
-}
-
-/** @noSelf **/
-export interface TeX {
-  error: (error: string) => void;
+  module_warning: (name: string, warn: string) => void;
+  module_error: (name: string, error: string) => void;
 }
 
 /** @noSelf **/
 export interface LuaTeXJa {
   jfont: {
     jfm_feature?: {
-      [feature: string]: any;
+      [feature: string]: string | boolean | undefined;
     };
     define_jfm: (jfm: JfmTable) => void;
   };

@@ -1,96 +1,25 @@
 import { Locale } from "../types/jfmFeature";
-import { Glue, JfmTable } from "../types/jfmTable";
 
-export const providesModule = luatexbase.provides_module;
-export const defineJfm = luatexja.jfont.define_jfm;
-
-export const providesJfm = (locale: Locale, jfm: JfmTable) => {
-  if (!luatexja.jfont.jfm_feature) {
-    tex.error(
-      "JFM features unsupported. Please update luatexja to 20200919 or higher"
-    );
-  }
-
-  const info = `Chinese JFM for ${
+export const providesModule = (locale: Locale) => {
+  const info = `JFM file for ${
     locale === "zh_CN"
       ? "Simplified Chinese fonts (zh_CN)"
       : locale === "zh_TW"
       ? "Traditional Chinese fonts (zh_TW)"
       : "Japanese fonts (ja_JP)"
   }`;
+  const date = "2023/xx/xx";
+  const version = "v2.0.0";
 
-  providesModule({
-    name: "chinese-jfm",
-    info,
-    date: "2023/xx/xx",
-    version: "v2.0.0",
-  });
+  luatexbase.module_info(
+    "chinese-jfm",
+    `Module chinese-jfm ${date} ${version}\n${info}`
+  );
 
-  defineJfm(jfm);
-};
-
-export const getJfmFeature = <T>(
-  name: string,
-  defaultValue?: { ifTrue: T; ifFalse: T }
-) => {
-  type R = unknown extends T ? boolean : string;
-
-  const feature = luatexja.jfont.jfm_feature?.[name];
-
-  if (defaultValue === undefined) {
-    return (feature !== undefined) as R;
-  }
-
-  if (feature === undefined) {
-    return defaultValue.ifFalse as R;
-  }
-
-  return (feature === true ? defaultValue.ifTrue : feature) as R;
-};
-
-export const getJfmStyle = () => {
-  const kaiming = getJfmFeature("kaiming");
-  const quanjiao = getJfmFeature("quanjiao");
-  const banjiao = getJfmFeature("banjiao");
-
-  const flag = (quanjiao ? 1 : 0) + (banjiao ? 1 : 0) + (kaiming ? 1 : 0);
-
-  if (flag > 1) {
-    tex.error(
-      `You can specify ONLY ONE feature among "quanjiao", "banjiao" and "kaiming"`
-    );
-  }
-
-  if (flag === 0) {
-    luatexbase.module_info(
+  if (!luatexja.jfont.jfm_feature) {
+    luatexbase.module_error(
       "chinese-jfm",
-      "No jfm feature specified. Using kaiming feature by default."
+      "JFM features are not supported. Please update luatexja to 20200919 or higher"
     );
   }
-
-  return banjiao ? "banjiao" : quanjiao ? "quanjiao" : "kaiming";
 };
-
-export const createGlue: (
-  style: "quanjiao" | "banjiao" | "kaiming"
-) => (
-  width: number,
-  priority?: number,
-  isKaimingPunct?: boolean,
-  optional?: Glue
-) => Glue =
-  (style) =>
-  (width, priority = 0, isKaimingPunct = false, optional) =>
-    (style === "banjiao" && isKaimingPunct) ||
-    (style !== "quanjiao" && !isKaimingPunct)
-      ? { 1: 0, 2: width, 3: 0, priority: [priority, -priority], ...optional }
-      : {
-          1: width,
-          2: 0,
-          3: width,
-          priority: [priority, -priority],
-          ...optional,
-        };
-
-export const mapGlues = (type: number[], glue: Glue | undefined) =>
-  Object.fromEntries(type.map((t) => [t, glue]));
