@@ -134,6 +134,7 @@ export class CnJfm extends AbstractJfm {
     });
 
     this[CharacterType.BOX].glue = {
+      ...this[CharacterType.BOX].glue,
       [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
     };
   }

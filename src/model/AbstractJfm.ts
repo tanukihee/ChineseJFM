@@ -1,6 +1,7 @@
 import { CharacterList, CharacterType } from "../asset/Characters";
 import { BaseJfmFeature, Locale } from "../types/jfmFeature";
 import { CharClass, JfmTable } from "../types/jfmTable";
+import { mapGlues } from "../util/jfmUtils";
 
 export abstract class AbstractJfm implements JfmTable {
   constructor(locale: Locale, feature: BaseJfmFeature) {
@@ -94,6 +95,44 @@ export abstract class AbstractJfm implements JfmTable {
       { width: 3 }
     );
     this[CharacterType.BOX] = createCharClass(CharacterType.BOX);
+
+    const hangFlags = feature.hang
+      .toString(2)
+      .split("")
+      .reverse()
+      .map((f) => f === "1");
+    const hangTypes = [
+      [CharacterType.COMMA, CharacterType.PERIOD],
+      [CharacterType.COLON],
+      [
+        CharacterType.CLOSE_PAREN,
+        CharacterType.CLOSE_QUOTE,
+        CharacterType.MIDDLE_DOT,
+      ],
+      [CharacterType.QUESTION_MARK, CharacterType.EXCLAMATION_MARK],
+      [CharacterType.OPEN_PAREN, CharacterType.OPEN_QUOTE],
+    ];
+
+    hangFlags.slice(0, -2).forEach((v, i) => {
+      if (v) {
+        hangTypes[i].forEach((t) => {
+          this[t].end_adjust = [
+            -this[t].width!,
+            -this[t].width!,
+            -this[t].width!,
+          ];
+        });
+      }
+    });
+
+    if (hangFlags[hangFlags.length - 1]) {
+      this[CharacterType.BOX].glue = mapGlues(hangTypes[hangTypes.length - 1], {
+        1: -0.5,
+        2: 0,
+        3: 0,
+        priority: -4,
+      });
+    }
   }
 
   [type: number]: CharClass;

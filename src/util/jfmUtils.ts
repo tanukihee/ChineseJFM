@@ -3,10 +3,14 @@ import { Glue } from "../types/jfmTable";
 export const getBoolJfmFeature = (name: string) =>
   !!luatexja.jfont.jfm_feature?.[name];
 
-export const getStringJfmFeature = (name: string, defalutVal?: string) =>
-  (defalutVal === undefined
-    ? luatexja.jfont.jfm_feature?.[name]
-    : defalutVal) as string | undefined;
+export const getStringJfmFeature = (name: string, defalutVal?: string) => {
+  const feature = luatexja.jfont.jfm_feature?.[name];
+  if (feature === undefined) {
+    return undefined;
+  }
+
+  return (feature === true ? defalutVal : feature) as string;
+};
 
 export const getJfmStyle = () => {
   const style = getStringJfmFeature("styl");

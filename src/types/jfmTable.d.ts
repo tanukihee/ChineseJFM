@@ -19,6 +19,7 @@ export type CharClass = {
   align?: "left" | "middle" | "right";
   kern?: Record<number, number>;
   glue?: Record<number, Glue | undefined>;
+  end_adjust?: [number, number, number?];
   round_threshold?: number;
 };
 
@@ -26,11 +27,10 @@ type Glue = {
   1: number;
   2: number;
   3: number;
-  priority?: [number, number];
+  priority?: [number, number] | number;
   kanjiskip_natural?: number;
   kanjiskip_stretch?: number;
   kanjiskip_shrink?: number;
-  end_adjust?: [number, number, number?];
 };
 type Chars =
   | string[]

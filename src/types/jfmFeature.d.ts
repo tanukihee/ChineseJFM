@@ -1,7 +1,7 @@
 type BaseJfmFeature = {
-  isVert: boolean;
   style: "quanjiao" | "banjiao" | "kaiming";
-  hang: 0 | -1 | 1 | -2 | 2 | -3 | 3 | -4 | 4;
+  isVert: boolean;
+  hang: number;
 };
 
 export type CnJfmFeature = BaseJfmFeature & {

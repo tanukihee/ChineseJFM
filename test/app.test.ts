@@ -7,10 +7,17 @@ describe("jfm feature", () => {
 
   const getBoolJfmFeature = (name: string) => !!theFeature[name];
 
-  const getStringJfmFeature = (name: string, defalutVal?: string) =>
-    (defalutVal === undefined ? theFeature[name] : defalutVal) as
-      | string
-      | undefined;
+  const getStringJfmFeature = (name: string, defalutVal?: string) => {
+    const feature = theFeature[name];
+    if (feature === undefined) {
+      return undefined;
+    }
+
+    return (feature === true ? defalutVal : feature) as string;
+  };
+  // (defalutVal === undefined
+  //   ? theFeature[name]
+  //   : theFeature[name] ?? defalutVal) as string | undefined;
 
   it("should get bool feature when true", () => {
     expect(getBoolJfmFeature("boolFeatureTrue")).toBeTruthy();
@@ -29,6 +36,6 @@ describe("jfm feature", () => {
   });
 
   it("should get value feature when false", () => {
-    expect(getStringJfmFeature("valFeatureFalse")).toBe(undefined);
+    expect(getStringJfmFeature("valFeatureFalse", "default")).toBe(undefined);
   });
 });

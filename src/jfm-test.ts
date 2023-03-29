@@ -11,9 +11,9 @@ providesModule("zh_CN");
 const jfm = new CnJfm({
   isVert: false,
   style: getJfmStyle(),
-  hang: 0,
+  hang: Number(getStringJfmFeature("hang", "1") ?? "0"),
   isHalfWidthColon: getBoolJfmFeature("hwcl"),
-  fzParenthesis: Number(getStringJfmFeature("fzpr", "0.15")),
+  fzParenthesis: Number(getStringJfmFeature("fzpr", "0.15") ?? "0"),
 });
 
 luatexja.jfont.define_jfm(jfm);
