@@ -10,9 +10,13 @@ export interface LuaTeXBase {
 /** @noSelf **/
 export interface LuaTeXJa {
   jfont: {
-    jfm_feature?: {
-      [feature: string]: string | boolean | undefined;
-    };
+    jfm_feature?: JfmFeatureType;
     define_jfm: (jfm: JfmTable) => void;
   };
 }
+
+export type JfmFeatureType = {
+  [feature: string]: string | boolean | undefined | JfmFeatureType;
+};
+
+export type FeatureType = string | boolean | undefined | JfmFeatureType;

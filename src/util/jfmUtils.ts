@@ -1,23 +1,22 @@
+import { JfmFeatureName } from "../types/jfmFeature";
 import { Glue } from "../types/jfmTable";
+import { FeatureType } from "../types/tex";
 
-export const getBoolJfmFeature = (name: string) =>
-  !!luatexja.jfont.jfm_feature?.[name];
+export const getJfmFeature = <T extends FeatureType>(
+  name: JfmFeatureName,
+  defaultVal?: T
+) => {
+  const feature = luatexja.jfont.jfm_feature?.[name] as T | undefined;
 
-export const getStringJfmFeature = (name: string, defalutVal?: string) => {
-  const feature = luatexja.jfont.jfm_feature?.[name];
-  if (feature === undefined) {
-    return undefined;
-  }
-
-  return (feature === true ? defalutVal : feature) as string;
+  return defaultVal !== undefined && feature === true ? defaultVal : feature;
 };
 
 export const getJfmStyle = () => {
-  const style = getStringJfmFeature("styl");
+  const style = getJfmFeature<string>("styl");
 
-  const kaiming = getBoolJfmFeature("kaiming");
-  const quanjiao = getBoolJfmFeature("quanjiao");
-  const banjiao = getBoolJfmFeature("banjiao");
+  const kaiming = getJfmFeature<boolean>("kaiming");
+  const quanjiao = getJfmFeature<boolean>("quanjiao");
+  const banjiao = getJfmFeature<boolean>("banjiao");
   const flag = (quanjiao ? 1 : 0) + (banjiao ? 1 : 0) + (kaiming ? 1 : 0);
 
   if (style !== undefined && flag !== 0) {
