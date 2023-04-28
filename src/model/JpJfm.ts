@@ -1,11 +1,11 @@
 import { CharacterType } from "../asset/Characters";
-import { CnJfmFeature } from "../types/jfmFeature";
+import { JpJfmFeature } from "../types/jfmFeature";
 import { createGlue, mapGlues } from "../util/jfmUtils";
 import { AbstractJfm } from "./AbstractJfm";
 
-export class CnJfm extends AbstractJfm {
-  constructor(feature: CnJfmFeature) {
-    super("zh_CN", feature);
+export class JpJfm extends AbstractJfm {
+  constructor(feature: JpJfmFeature) {
+    super("ja_JP", feature);
 
     const aki = createGlue(feature.style);
 
@@ -26,29 +26,34 @@ export class CnJfm extends AbstractJfm {
 
     this[CharacterType.IDEOGRAPH].glue = {
       ...mapGlues(opens, aki(0.5, -1)),
+      [CharacterType.COLON]: aki(0.25),
       [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
+      [CharacterType.EXCLAMATION_MARK]: feature.halfWidthExclamationMark
+        ? aki(0.25, 1, true)
+        : undefined,
     };
+    this[CharacterType.IDEOGRAPH].width = feature.isProportional ? "prop" : 1;
 
     this[CharacterType.COMMA].glue = mapGlues(regulars, aki(0.5));
 
     this[CharacterType.PERIOD].glue = mapGlues(regulars, aki(0.5, 1, true));
 
-    this[CharacterType.COLON].glue = mapGlues(
-      regulars,
-      feature.isVert && !feature.isHalfWidthColon ? undefined : aki(0.5)
-    );
-
-    this[CharacterType.OPEN_PAREN].left = -feature.fzParenthesis;
+    this[CharacterType.COLON].glue = mapGlues(regulars, aki(0.25));
 
     this[CharacterType.CLOSE_PAREN].glue = {
       ...mapGlues(regulars, aki(0.5, -1)),
       [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
+      [CharacterType.EXCLAMATION_MARK]: feature.halfWidthExclamationMark
+        ? aki(0.25, 1, true)
+        : undefined,
     };
-    this[CharacterType.CLOSE_PAREN].left = feature.fzParenthesis;
 
     this[CharacterType.CLOSE_QUOTE].glue = {
       ...mapGlues(regulars, aki(0.5, -1)),
       [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
+      [CharacterType.EXCLAMATION_MARK]: feature.halfWidthExclamationMark
+        ? aki(0.25, 1, true)
+        : undefined,
     };
 
     this[CharacterType.MIDDLE_DOT].glue = mapGlues(
@@ -56,14 +61,12 @@ export class CnJfm extends AbstractJfm {
       aki(0.25, -1)
     );
 
-    [CharacterType.QUESTION_MARK, CharacterType.EXCLAMATION_MARK].forEach(
-      (t) => {
-        this[t].glue = mapGlues(
-          regulars,
-          feature.isVert ? undefined : aki(0.5, 1, true)
-        );
-      }
-    );
+    this[CharacterType.EXCLAMATION_MARK].glue = {
+      ...mapGlues(regulars, aki(0.25, 1, true)),
+      [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
+    };
+    this[CharacterType.EXCLAMATION_MARK].width =
+      feature.halfWidthExclamationMark ? 0.5 : 1;
 
     dashes.forEach((t) => {
       this[t].glue = mapGlues(opens, aki(0.5, -1));

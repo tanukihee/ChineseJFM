@@ -3,13 +3,12 @@ import { JfmFeatureType } from "./tex";
 type BaseJfmFeature = {
   style: "quanjiao" | "banjiao" | "kaiming";
   isVert: boolean;
-  hang: JfmFeatureType;
+  // TODO
+  // hang: JfmFeatureType;
 };
-export type BaseJfmFeatureName =
-  | BaseJfmFeature["style"]
-  | "styl"
-  | "vert"
-  | "hang";
+export type BaseJfmFeatureName = BaseJfmFeature["style"] | "styl" | "vert";
+// TODO
+// | "hang";
 
 export type CnJfmFeature = BaseJfmFeature & {
   isHalfWidthColon: boolean;
