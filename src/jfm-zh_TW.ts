@@ -1,14 +1,13 @@
-import { JpJfm } from "./model/JpJfm";
+import { TwJfm } from "./model/TwJfm";
 import { getJfmFeature, getJfmStyle } from "./util/jfmUtils";
 import { providesModule } from "./util/texUtils";
 
-providesModule("ja_JP");
+providesModule("zh_TW");
 
 const feature = {
   isVert: !!getJfmFeature<boolean>("vert"),
   style: getJfmStyle(),
   halfWidthExclamationMark: !!getJfmFeature<boolean>("hwex"),
-  isProportional: !!getJfmFeature<boolean>("prop"),
 };
 
 if (feature.isVert && feature.halfWidthExclamationMark) {
@@ -18,6 +17,6 @@ if (feature.isVert && feature.halfWidthExclamationMark) {
   );
 }
 
-const jfm = new JpJfm(feature);
+const jfm = new TwJfm(feature);
 
 luatexja.jfont.define_jfm(jfm);

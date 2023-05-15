@@ -1,11 +1,11 @@
 import { CharacterType } from "../asset/Characters";
-import { JpJfmFeature } from "../types/jfmFeature";
+import { TwJfmFeature } from "../types/jfmFeature";
 import { createGlue, mapGlues } from "../util/jfmUtils";
 import { AbstractJfm } from "./AbstractJfm";
 
-export class JpJfm extends AbstractJfm {
-  constructor(feature: JpJfmFeature) {
-    super("ja_JP", feature);
+export class TwJfm extends AbstractJfm {
+  constructor(feature: TwJfmFeature) {
+    super("zh_TW", feature);
 
     const aki = createGlue(feature.style);
 
@@ -16,23 +16,26 @@ export class JpJfm extends AbstractJfm {
       CharacterType.THREE_EM_DASH,
     ];
     const closes = [CharacterType.CLOSE_PAREN, CharacterType.CLOSE_QUOTE];
-    const regulars = [CharacterType.IDEOGRAPH, ...opens, ...dashes];
+    const regulars = [CharacterType.IDEOGRAPH, ...opens, ...closes, ...dashes];
 
     this[CharacterType.IDEOGRAPH].glue = {
       ...mapGlues(opens, aki(0.5, -1)),
-      [CharacterType.COLON]: aki(0.25),
-      [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
+      [CharacterType.COMMA]: aki(0.25),
+      [CharacterType.PERIOD]: aki(0.25, 1, true),
+      [CharacterType.COLON]: !feature.isVert ? aki(0.25) : undefined,
       [CharacterType.EXCLAMATION_MARK]: feature.halfWidthExclamationMark
         ? aki(0.25, 1, true)
         : undefined,
+      [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
     };
-    this[CharacterType.IDEOGRAPH].width = feature.isProportional ? "prop" : 1;
 
-    this[CharacterType.COMMA].glue = mapGlues(regulars, aki(0.5));
+    this[CharacterType.COMMA].glue = mapGlues(regulars, aki(0.25));
 
-    this[CharacterType.PERIOD].glue = mapGlues(regulars, aki(0.5, 1, true));
+    this[CharacterType.PERIOD].glue = mapGlues(regulars, aki(0.25, 1, true));
 
-    this[CharacterType.COLON].glue = mapGlues(regulars, aki(0.25));
+    this[CharacterType.COLON].glue = !feature.isVert
+      ? mapGlues(regulars, aki(0.25))
+      : undefined;
 
     closes.forEach(
       (t) =>

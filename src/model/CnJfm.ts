@@ -9,20 +9,13 @@ export class CnJfm extends AbstractJfm {
 
     const aki = createGlue(feature.style);
 
-    const regulars = [
-      CharacterType.IDEOGRAPH,
-      CharacterType.OPEN_PAREN,
-      CharacterType.OPEN_QUOTE,
-      CharacterType.DASH,
-      CharacterType.TWO_EM_DASH,
-      CharacterType.THREE_EM_DASH,
-    ];
     const opens = [CharacterType.OPEN_PAREN, CharacterType.OPEN_QUOTE];
     const dashes = [
       CharacterType.DASH,
       CharacterType.TWO_EM_DASH,
       CharacterType.THREE_EM_DASH,
     ];
+    const regulars = [CharacterType.IDEOGRAPH, ...opens, ...dashes];
 
     this[CharacterType.IDEOGRAPH].glue = {
       ...mapGlues(opens, aki(0.5, -1)),
@@ -35,7 +28,7 @@ export class CnJfm extends AbstractJfm {
 
     this[CharacterType.COLON].glue = mapGlues(
       regulars,
-      feature.isVert && !feature.isHalfWidthColon ? undefined : aki(0.5)
+      feature.isHalfWidthColon ? aki(0.5) : undefined
     );
 
     this[CharacterType.OPEN_PAREN].left = -feature.fzParenthesis;
@@ -52,7 +45,7 @@ export class CnJfm extends AbstractJfm {
     };
 
     this[CharacterType.MIDDLE_DOT].glue = mapGlues(
-      [...opens, CharacterType.IDEOGRAPH],
+      [...regulars, CharacterType.MIDDLE_DOT],
       aki(0.25, -1)
     );
 
@@ -66,7 +59,10 @@ export class CnJfm extends AbstractJfm {
     );
 
     dashes.forEach((t) => {
-      this[t].glue = mapGlues(opens, aki(0.5, -1));
+      this[t].glue = {
+        ...mapGlues(opens, aki(0.5, -1)),
+        [CharacterType.MIDDLE_DOT]: aki(0.25, -1),
+      };
       this[t].kern = Object.fromEntries(dashes.map((d) => [d, 0]));
     });
 

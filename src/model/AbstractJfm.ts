@@ -1,7 +1,7 @@
 import { CharacterList, CharacterType } from "../asset/Characters";
 import { BaseJfmFeature, Locale } from "../types/jfmFeature";
-import { CharClass, JfmTable } from "../types/jfmTable";
-import { mapGlues } from "../util/jfmUtils";
+import { CharClass, Glue, JfmTable } from "../types/jfmTable";
+import { createGlue } from "../util/jfmUtils";
 
 export abstract class AbstractJfm implements JfmTable {
   constructor(locale: Locale, feature: BaseJfmFeature) {

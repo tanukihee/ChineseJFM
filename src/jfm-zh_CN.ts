@@ -4,7 +4,7 @@ import { providesModule } from "./util/texUtils";
 
 providesModule("zh_CN");
 
-const jfm = new CnJfm({
+const feature = {
   isVert: !!getJfmFeature<boolean>("vert"),
   style: getJfmStyle(),
   isHalfWidthColon: !!getJfmFeature<boolean>("hwcl"),
@@ -25,6 +25,15 @@ const jfm = new CnJfm({
   //   COMMA: true,
   //   PERIOD: true,
   // })!,
-});
+};
+
+if (feature.isHalfWidthColon && !feature.isVert) {
+  luatexbase.module_error(
+    "chinese-jfm",
+    'The "hwcl" feature is only available in vertical mode.'
+  );
+}
+
+const jfm = new CnJfm(feature);
 
 luatexja.jfont.define_jfm(jfm);
