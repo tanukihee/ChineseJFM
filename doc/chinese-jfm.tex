@@ -1,8 +1,8 @@
 % The documentation of chinese-jfm
-% v1.1.0
-% Copyright (c) 2020 -- 2021 ListLee.
+% v2.0.0
+% Copyright (c) 2020 -- 2023 ListLee.
 
-\documentclass[a4paper , zihao=-4 , fontset=adobe , punct=zh_CN/kaiming]{ctexart}
+\documentclass[a4paper , zihao=-4 , punct=zh_CN/kaiming]{ctexart}
 \usepackage{luatexja-adjust}
 % \usepackage{lua-visual-debug}
 \protect\def\+{\insertxkanjiskip}
@@ -67,47 +67,48 @@
 
 \subsection{基本特性}
 \begin{description}
-    \item[\texttt{prop}] ``proportional''，「比例宽度」特性。适用于比例宽度的日文字体，比之于\textsf{lua\-texja}自带的\textsf{jfm-prop.lua}与\textsf{jfm-propv.lua}，\verb|prop|特性将此两者整合的同时，也提供了对标点间距的调整功能。仅\textsf{ja\_JP}拥有。
-    \item[\texttt{hwcl}] ``half-width colon''，「半宽冒号」特性。适用于简中直排时，冒号分号只占半宽的字体（如华文宋体等）。仅\textsf{zh\_CN}拥有。
-    \item[\texttt{hwex}] ``half-width exclamation mark''，「半宽感叹号」特性。开启此特性，繁中、日文横排感叹号将视作半宽，而非全宽。\textsf{zh\_TW}、\textsf{ja\_JP}拥有。
-    \item[\texttt{fzpr = 0.25}] ``\textit{Fangzheng} parenthesis''，「方正括号」特性。部分方正字体会将除引号外的括号做在中间位置。开启本特性，可以将括号调整至「正常」位置。仅\textsf{zh\_CN}拥有。
-    \item[\texttt{hang = 0}] 「标点悬挂」特性。用于悬挂标点，分5个等级：\verb|0|禁止悬挂；\verb|±1|悬挂逗号、句号；\verb|±2|悬挂冒号、分号；\verb|±3|悬挂右括号、右引号、分隔号；\verb|±4|悬挂问号、叹号。取正值时，表明「尽量不悬挂」；取负值时，表明「尽量悬挂」。
+  \item[\texttt{prop}] ``proportional''，「比例宽度」特性。适用于比例宽度的日文字体，比之于\textsf{lua\-texja}自带的\textsf{jfm-prop.lua}与\textsf{jfm-propv.lua}，\verb|prop|特性将此两者整合的同时，也提供了对标点间距的调整功能。仅\textsf{ja\_JP}拥有。
+  \item[\texttt{hwcl}] ``half-width colon''，「半宽冒号」特性。适用于简中直排时，冒号分号只占半宽的字体（如华文宋体等）。仅\textsf{zh\_CN}拥有。
+  \item[\texttt{hwex}] ``half-width exclamation mark''，「半宽感叹号」特性。开启此特性，繁中、日文横排感叹号将视作半宽，而非全宽。\textsf{zh\_TW}、\textsf{ja\_JP}拥有。
+  \item[\texttt{fzpr = 0.15}] ``\textit{Fangzheng} parenthesis''，「方正括号」特性。部分方正字体会将除引号外的括号做在靠中间位置。开启本特性，可以将括号调整至「正常」位置。仅\textsf{zh\_CN}拥有。
+  \item[\texttt{hang = { COMMA, PERIOD }}] 「标点悬挂」特性。用于悬挂标点。开启后默认悬挂逗号与句号，需要更多悬挂，请自行开启。
+    % 将可悬挂标点分5个等级：\verb|1|逗号、句号；\verb|2|冒号、分号；\verb|4|右括号、右引号、分隔号；\verb|8|问号、叹号；\verb|16|左括号、左引号、在行首的分隔号。5种类型的标点以按位枚举的结果确定最终悬挂的标点种类：如\+\verb|11|表示悬挂逗号、句号，冒号、分号和问号、叹号；\verb|31|表示悬挂所有。
 \end{description}
 
 \subsection{特殊特性}
 以下几个特性，可用于将某地区字体的标点符号移动至其他地区的习惯位置。特性的默认值是基于思源而设置的，如果使用其他字体，可能需要自行尝试调整。
 \begin{description}
-    \item[\texttt{tocn}] 用于将标点设为中国大陆习惯的偏靠位置，但是全宽问号不做处理。
-    \item[\texttt{tojp}] 用于将标点设为日本习惯的偏靠位置，冒号分号仍然中置。
-    \item[\texttt{totw}] 用于将标点设为台湾地区习惯的中置位置。
+  \item[\texttt{tocn}] 用于将标点设为中国大陆习惯的偏靠位置，但是全宽问号不做处理。
+  \item[\texttt{tojp}] 用于将标点设为日本习惯的偏靠位置，冒号分号仍然中置。
+  \item[\texttt{totw}] 用于将标点设为台湾地区习惯的中置位置。
 \end{description}
 
 \section{挤压顺序}
 如第\ref{sec:pr}节所述，\textsf{Chinese JFM}中配有\+\verb|priority|的设置，配合\textsf{luatexja-adjust}包，可以进行有优先顺序的标点挤压。\textsf{Chinese JFM}沿袭传统铅字排版与现代DTP软件（如InDesign等）的习惯，认为标点只占半宽，全宽标点是半宽标点加上半宽铅空的结果。所谓的“标点挤压”更应说成是“标点间距调整”，调整顺序如下。
 \begin{itemize}
-    \item 最先给句号、问号、叹号插空；
-    \item 其次给顿号、逗号、冒号、分号插空；
-    \item 最后调整引号、括号前后与间隔号两边的空格；
-    \item 如果进行上述调整后，仍无法达到行长要求，最后才会进行字间字距调整。
+  \item 最先给句号、问号、叹号插空；
+  \item 其次给顿号、逗号、冒号、分号插空；
+  \item 最后调整引号、括号前后与间隔号两边的空格；
+  \item 如果进行上述调整后，仍无法达到行长要求，最后才会进行字间字距调整。
 \end{itemize}
 
 根据标点位置，可以将标点分为偏靠标点、中置标点与全宽标点。对于偏靠标点，插空指在半宽标点后插入一个半宽铅空，对于中置标点，插空指在半宽标点前后各插入一个1/4宽铅空。全宽标点无空白可调整的，不作调整。
 
 \section{将来计划}
 \begin{enumerate}
-    \item 添加直排时的行间标点设置。
+  \item 添加直排时的行间标点设置。
 \end{enumerate}
 
 \nocite{*}
 \begin{thebibliography}{9}
-    \bibitem{LuaTeX-ja} Lua\TeX-jaプロジェクトチーム．\textit{Lua\TeX-jaパッケージ}［EB/OL］．version 20210521.0，（2021-05-21）\\\mbox{}
-    \hfill\url{https://ctan.org/pkg/luatexja}
+  \bibitem{LuaTeX-ja} Lua\TeX-jaプロジェクトチーム．\textit{Lua\TeX-jaパッケージ}［EB/OL］．version 20210521.0，（2021-05-21）\\\mbox{}
+  \hfill\url{https://ctan.org/pkg/luatexja}
 
-    \bibitem{CTeX} CTEX.ORG．\textit{\CTeX{}宏集手册}［EB/OL］．version 2.5.6，（2021-03-14）\\\mbox{}
-    \hfill\url{https://ctan.org/pkg/ctex}
+  \bibitem{CTeX} CTEX.ORG．\textit{\CTeX{}宏集手册}［EB/OL］．version 2.5.6，（2021-03-14）\\\mbox{}
+  \hfill\url{https://ctan.org/pkg/ctex}
 
-    \bibitem{孔雀计划} 刘庆（Eric Q L）．\textit{孔雀计划：中文字体排印的思路}［EB/OL］．\\\mbox{}
-    \hfill\url{https://thetype.com/kongque/}
+  \bibitem{孔雀计划} 刘庆（Eric Q L）．\textit{孔雀计划：中文字体排印的思路}［EB/OL］．\\\mbox{}
+  \hfill\url{https://thetype.com/kongque/}
 \end{thebibliography}
 
 \end{document}

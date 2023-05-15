@@ -6,14 +6,16 @@
 local function createJFMTable()
     local punct = require('punct')
 
+    print(punct)
+
     --- 基础 JFM 表
     local baseJFMTable = {
         version = 3,
         -- dir = isVert and 'tate' or 'yoko',
         zw = 1,
         zh = 1,
-        kanjiskip = {0.0, 0.25, 0},
-        xkanjiskip = {0.25, 0.25, 1 / 12},
+        kanjiskip = { 0.0, 0.25, 0 },
+        xkanjiskip = { 0.25, 0.25, 1 / 12 },
         [punct.IDEOGRAPH] = {
             align = 'left',
             left = 0,
@@ -31,7 +33,7 @@ local function createJFMTable()
         },
         [punct.COMMA] = {
             -- 逗号、顿号
-            chars = {'、', '，'},
+            chars = { '、', '，' },
             --   align = 'left',
             --   left = 0,
             --   down = 0,
@@ -51,7 +53,7 @@ local function createJFMTable()
         },
         [punct.PERIOD] = {
             -- 句号
-            chars = {'。', '．'},
+            chars = { '。', '．' },
             --   align = 'left',
             --   left = 0,
             --   down = 0,
@@ -71,7 +73,7 @@ local function createJFMTable()
         },
         [punct.COLON] = {
             -- 冒号、分号
-            chars = {'：', '；'},
+            chars = { '：', '；' },
             --   align = 'left',
             --   left = 0,
             --   down = 0,
@@ -91,7 +93,7 @@ local function createJFMTable()
         },
         [punct.OPEN_PAREN] = {
             -- 开括号
-            chars = {'〈', '《', '「', '『', '【', '〔', '〖', '〘', '〝', '（', '［', '｛', '｟'},
+            chars = { '〈', '《', '「', '『', '【', '〔', '〖', '〘', '〝', '（', '［', '｛', '｟' },
             --   align = is_fz and 'middle' or 'right',
             --   left = 0,
             --   down = 0,
@@ -105,7 +107,7 @@ local function createJFMTable()
         },
         [punct.CLOSE_PAREN] = {
             -- 闭括号
-            chars = {'〉', '》', '」', '』', '】', '〕', '〗', '〙', '〞', '〟', '）', '］', '｝', '｠'},
+            chars = { '〉', '》', '」', '』', '】', '〕', '〗', '〙', '〞', '〟', '）', '］', '｝', '｠' },
             --   align = is_fz and 'middle' or 'left',
             --   left = 0,
             --   down = 0,
@@ -125,7 +127,7 @@ local function createJFMTable()
         },
         [punct.OPEN_QUOTE] = {
             -- 开引号
-            chars = {'‘', '“'},
+            chars = { '‘', '“' },
             --   align = is_vt and (is_fz and 'middle' or 'right') or 'right',
             --   left = 0,
             --   down = 0,
@@ -139,7 +141,7 @@ local function createJFMTable()
         },
         [punct.CLOSE_QUOTE] = {
             -- 闭引号
-            chars = {'’', '”'},
+            chars = { '’', '”' },
             --   align = is_vt and (is_fz and 'middle' or 'left') or 'left',
             --   left = 0,
             --   down = 0,
@@ -159,7 +161,7 @@ local function createJFMTable()
         },
         [punct.MIDDLE_DOT] = {
             -- 间隔号
-            chars = {'・', '·'},
+            chars = { '・', '·' },
             align = 'middle',
             --   left = 0,
             --   down = 0,
@@ -185,7 +187,7 @@ local function createJFMTable()
         },
         [punct.QUESTION_MARK] = {
             -- 问号
-            chars = {'？'},
+            chars = { '？' },
             align = 'left',
             --   left = 0,
             --   down = 0,
@@ -205,7 +207,7 @@ local function createJFMTable()
         },
         [punct.EXCLAMATION_MARK] = {
             -- 叹号
-            chars = {'！'},
+            chars = { '！' },
             --   align = is_vt and 'middle' or 'left',
             --   left = 0,
             --   down = 0,
@@ -225,7 +227,7 @@ local function createJFMTable()
         },
         [punct.COMPOSED_MARK] = {
             -- 复合/连用叹号问号
-            chars = {'‼', '⁇', '⁈', '⁉'},
+            chars = { '‼', '⁇', '⁈', '⁉' },
             align = 'left',
             --   left = 0,
             --   down = 0,
@@ -239,10 +241,10 @@ local function createJFMTable()
         },
         [punct.DASH] = {
             -- 一字线、省略号、波浪线
-            chars = {'—', -- U+2014
-            '―', -- U+2015
-            '‥', '…', '〜', -- U+301C
-            '～' -- U+FF5E
+            chars = { '—',   -- U+2014
+                '―',         -- U+2015
+                '‥', '…', '〜', -- U+301C
+                '～'          -- U+FF5E
             },
             align = 'left',
             --   left = 0,
@@ -264,7 +266,7 @@ local function createJFMTable()
         },
         [punct.TWO_EM_DASH] = {
             -- U+2E3A TWO-EM DASH
-            chars = {'⸺'},
+            chars = { '⸺' },
             align = 'left',
             --   left = 0,
             --   down = 0,
@@ -285,7 +287,7 @@ local function createJFMTable()
         },
         [punct.THREE_EM_DASH] = {
             -- U+2E3B THREE-EM DASH
-            chars = {'⸻'},
+            chars = { '⸻' },
             align = 'left',
             --   left = 0,
             --   down = 0,
@@ -306,7 +308,7 @@ local function createJFMTable()
         },
         [punct.BOX] = {
             -- box end
-            chars = {'boxbdd', 'parbdd', 'jcharbdd', 'alchar', 'nox alchar', 'glue', -1},
+            chars = { 'boxbdd', 'parbdd', 'jcharbdd', 'alchar', 'nox alchar', 'glue', -1 },
             --   glue = {
             --     [3] = aki(0.25, -1)
             --   }
