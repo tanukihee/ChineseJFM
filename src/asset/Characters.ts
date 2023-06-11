@@ -1,6 +1,6 @@
 import { Chars } from "../types/jfmTable";
 
-export enum CharacterType {
+export const enum CharacterType {
   /** 汉字 */
   IDEOGRAPH = 0,
   /** 逗号、顿号 */
