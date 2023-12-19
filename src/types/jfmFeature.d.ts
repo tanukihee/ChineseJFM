@@ -1,5 +1,3 @@
-import { JfmFeatureType } from "./tex";
-
 type BaseJfmFeature = {
   style: "quanjiao" | "banjiao" | "kaiming";
   isVert: boolean;

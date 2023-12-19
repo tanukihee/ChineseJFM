@@ -1,3 +1,4 @@
+import { config } from "../chinese_jfm";
 import { Locale } from "../types/jfmFeature";
 
 export const providesModule = (locale: Locale) => {
@@ -22,4 +23,6 @@ export const providesModule = (locale: Locale) => {
       "JFM features are not supported. Please update luatexja to 20200919 or higher"
     );
   }
+
+  chinese_jfm = config;
 };
